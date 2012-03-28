@@ -1,0 +1,37 @@
+{% extends 'BatnaUserBundle::layout.html.twig' %}
+
+{% block corps %}
+
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.userEdit'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<form action="{{ path('user_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+			<div class="block-content">
+				
+				    {{ form_widget(edit_form) }}
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('user') }}" class="button">{{ 'user.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						<li>
+							<form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+				            	{{ form_widget(delete_form) }}
+				            	<input type="submit" value="Delete" class="button red">
+				            </form>
+			            </li>
+			            <li>
+			            	<input type="submit" class="button" value="{{ 'user.edit'|trans({}, 'BatnaUserBundle') }}" />
+			            </li>
+					</ul>
+				</div>
+			</div>
+			
+				</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

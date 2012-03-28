@@ -1,0 +1,58 @@
+app:
+  administration: Administration
+  title: Siebel Monitoring
+  alerts: Alertes
+  messages: Messages
+dashboard:
+  dashboard: Tableau de bord
+  profile: Profile
+  settings: Paramètres
+  messages: Messages
+  logout: Déconnexion
+  newMessage: nouveaux messages
+  userManagement: Gestion des utilisateurs
+  groupManagement: Gestion des groupes
+  logged_in_as: Connecté en temps que
+  referentiel: Référentiel
+  gateway: Passerelle
+  enterpriseServer: Serveur d'entreprise
+  siebelServer: Serveur Siebel
+user:
+  userList: Liste des utilisateurs
+  Actions: Action
+  Username: Utilisateur
+  Email: Email
+  Enabled: Actif
+  Lastlogin: Dernière connexion
+  Locked: Verrouillé
+  Expired: Expiré
+  Passwordrequestedat: Renouvellement du mot de passe
+  Roles: Roles
+  Credentialsexpired: Expiration
+  Id: Identifiant
+  Name: Prénom
+  Surname: Nom
+  newUser: Créer un nouvel utilisateur
+  userCreation: Création d'un nouvel utilisateur
+  backToTheList: Retour à la liste
+  create: Créer
+  userView: Vue d'un utilisateur
+  userEdit: Modification d'un utilisateur
+  edit: Modifier
+  delete: Supprimer l'utilisateur
+  listGroups: Groupes de l'utilisateur
+  listRoles: Rôles de l'utilisateur
+  addRoleSubmit: Ajouter le rôle
+  addGroupSubmit: Ajouter le groupe
+  delete: Supprimer
+group:
+  groupCreation: Créer un nouveau groupe
+  submitNew: Créer le groupe
+  submitEdit: Modifier le groupe
+  groupNew: Création d'un nouveau groupe
+  groupList: List des groupes d'utilisateurs
+  backToTheList: Retour à la liste
+  edit: Modifier
+  delete: Supprimer
+  addRoleSubmit: Ajouter le rôle
+  listRoles: Liste des rôles du groupe

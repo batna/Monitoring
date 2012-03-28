@@ -1,0 +1,42 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block maintitle %}Gestion des groupes d'utilisateurs{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.userList'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+		    <table style="margin:10px;">
+		    	<thead>
+		    		<tr>
+		    			<th>Actions</th>
+		    			<th>Nom du groupe</th>
+		    		</tr>
+		    	</thead>
+			    <tbody>
+				{% for group in groups %}
+			        <tr>
+				            <td>
+				            	<a href="{{ path('group_show', { 'id': group.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('group_edit', { 'id': group.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				            </td>
+				        <td>
+				        	<a href="{{ path('group_show', {'id': group.getId()} ) }}">{{ group.getName() }}</a>
+			        	</td>
+			        </tr>
+			    {% endfor %}
+			    </tbody>
+		    </table>
+		    <div class="block-actions">
+				<ul class="actions-left">
+					<li><a href="{{ path('group_new') }}" class="button">{{ 'group.groupCreation'|trans({}, 'BatnaUserBundle') }}</a></li>
+				</ul>
+			</div>
+	    </div>
+	</div>
+</div>
+{% endblock %}

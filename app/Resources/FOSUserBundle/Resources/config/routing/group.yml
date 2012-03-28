@@ -1,0 +1,40 @@
+group:
+    pattern:  /
+    defaults: { _controller: "BatnaUserBundle:Group:list" }
+
+group_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaUserBundle:Group:show" }
+
+group_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaUserBundle:Group:new" }
+
+group_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaUserBundle:Group:create" }
+    requirements: { _method: post }
+
+group_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaUserBundle:Group:edit" }
+
+group_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaUserBundle:Group:update" }
+    requirements: { _method: post }
+
+group_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaUserBundle:Group:delete" }
+    requirements: { _method: post }
+
+group_add_role:
+    pattern:  /{id}/role/add
+    defaults: { _controller: "BatnaUserBundle:Group:addRole" }
+    requirements: { _method: post }
+
+group_remove_role:
+    pattern:  /{id}/role/delete
+    defaults: { _controller: "BatnaUserBundle:Group:removeRole" }
+    requirements: { _method: post }

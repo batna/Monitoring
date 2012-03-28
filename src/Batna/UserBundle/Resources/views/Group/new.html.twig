@@ -1,0 +1,31 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block maintitle %}Création d'un groupe{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'group.groupNew'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<form action="{{ path('group_create') }}" {{ form_enctype(form) }} method="POST" class="group_new">
+				<div class="block-content">
+				    {{ form_widget(form) }}
+				    <div>
+				        
+				    </div>
+					<div class="block-actions">
+						<ul class="actions-left">
+							<li><a href="{{ path('group') }}" class="button">{{ 'group.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>
+						</ul>
+						<ul class="actions-right">
+							<li><input class="button" type="submit" value="{{ 'group.submitNew'|trans([], 'BatnaUserBundle') }}" /></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

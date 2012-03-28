@@ -1,0 +1,49 @@
+{% extends 'BatnaUserBundle::layout.html.twig' %}
+
+{% block maintitle %}Gestion des utilisateurs{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.userList'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table id="table-user" style="margin:10px">
+				    <thead>
+				        <tr>
+				            <th>{{ 'user.Actions'|trans({}, 'BatnaUserBundle') }}</th>
+				            <th>{{ 'user.Username'|trans({}, 'BatnaUserBundle') }}</th>
+				            <th>{{ 'user.Name'|trans({}, 'BatnaUserBundle') }}</th>
+				            <th>{{ 'user.Surname'|trans({}, 'BatnaUserBundle') }}</th>
+				            <th>{{ 'user.Email'|trans({}, 'BatnaUserBundle') }}</th>
+				            <th>{{ 'user.Lastlogin'|trans({}, 'BatnaUserBundle') }}</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    {% for entity in entities %}
+				        <tr>
+				            <td>
+				            	<a href="{{ path('user_show', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('user_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				            </td>
+				            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+				            <td>{{ entity.name }}</td>
+				            <td>{{ entity.surname }}</td>
+				            <td>{{ entity.email }}</td>
+				            <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif%}</td>
+				        </tr>
+				    {% endfor %}
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('user_new') }}" class="button">{{ 'user.userCreation'|trans({}, 'BatnaUserBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

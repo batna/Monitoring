@@ -1,0 +1,141 @@
+{% extends 'BatnaUserBundle::layout.html.twig' %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_4">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.userView'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table class="table">
+				    <tbody>
+				        <tr>
+				            <th>Username</th>
+				            <td>{{ entity.username }}</td>
+				        </tr>
+				        <tr>
+				            <th>Email</th>
+				            <td>{{ entity.email }}</td>
+				        </tr>
+				        <tr>
+				            <th>Name</th>
+				            <td>{{ entity.name }}</td>
+				        </tr>
+				        <tr>
+				            <th>Surname</th>
+				            <td>{{ entity.surname }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('user') }}" class="button">{{ 'user.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						<li>
+							<form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+				            	{{ form_widget(delete_form) }}
+				            	<input type="submit" value="{{ 'user.delete'|trans({}, 'BatnaUserBundle') }}" class="button red">
+				            </form>
+			            </li>
+			            <li>
+			            	<a href="{{ path('user_edit', { 'id': entity.id }) }}" class="button">{{ 'user.edit'|trans({}, 'BatnaUserBundle') }}</a>
+			            </li>
+					</ul>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div class="grid_4">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.listGroups'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+				<div class="block-content">
+					<table>
+					{% for group in entity.groups %}
+						<tr>
+							<td>
+								<form action="{{ path('user_remove_group', {'id': entity.id }) }}" method="post">
+									<input type="hidden" name="user" value="{{ entity.id }}" />
+									<input type="hidden" name="group" value="{{ group.id }}" />
+									<input type=submit class="button red" value="{{ 'user.delete'|trans({}, 'BatnaUserBundle') }}" />
+								</form>
+							</td>
+							<td>{{ group.name }}</td>
+						</tr>
+					{% endfor %}
+					</table>
+					
+					
+					<div class="block-actions">
+					<form action="{{ path('user_add_group', {'id': entity.id }) }}" method="post">
+						<ul class="actions-right">
+							<li>
+								<input type="hidden" name="id" value="{{ entity.id }}" />
+								<select name="group">
+								{% for group in groups %}
+									<option value="{{ group.id }}">{{ group.name }}</option>
+								{% endfor %}
+								</select>
+							</li>
+							<li><input type="submit" class="button" value="{{ 'user.addGroupSubmit'|trans({}, 'BatnaUserBundle') }}" /></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_4">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.listRoles'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+				<div class="block-content">
+					<table>
+					{% for role in customGroupRoles %}
+						<tr>
+							<td>
+								<a href="#" class="button">Hérité</a>
+							</td>
+							<td>{{ role }}</td>
+						</tr>
+					{% endfor %}
+					{% for role in customRoles %}
+						<tr>
+							<td>
+								{% if role != 'ROLE_USER' %}
+								<form action="{{ path('user_remove_role', {'id': entity.id }) }}" method="post">
+									<input type="hidden" name="group" value="{{ entity.id }}" />
+									<input type="hidden" name="role" value="{{ role }}" />
+									<input type=submit class="button red" value="{{ 'group.delete'|trans({}, 'BatnaUserBundle') }}" />
+								</form>
+								{% else %}
+								<a href="#" class="button">Base</a>
+								{% endif %}
+							</td>
+							<td>{{ role }}</td>
+						</tr>
+					{% endfor %}
+					</table>
+					<div class="block-actions">
+					<form action="{{ path('user_add_role', {'id': entity.id }) }}" method="post">
+						<ul class="actions-right">
+							<li>
+								<input type="hidden" name="id" value="{{ entity.id }}" />
+								<select name="role">
+								{% for role in roles %}
+									<option>{{ role.name }}</option>
+								{% endfor %}
+								</select>
+							</li>
+							<li><input type="submit" class="button" value="{{ 'user.addRoleSubmit'|trans({}, 'BatnaUserBundle') }}" /></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

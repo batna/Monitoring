@@ -36,6 +36,15 @@ class User extends BaseUser
      */
     private $surname;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Batna\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="ADMIN_User_Group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+    
     public function __construct()
     {
     	parent::__construct();

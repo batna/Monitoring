@@ -1,0 +1,3 @@
+sudo rm -rf app/cache/dev
+rm -rf app/logs/dev.log
+php app/console cache:clear

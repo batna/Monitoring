@@ -1,0 +1,29 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block maintitle %}Modification d'un groupe{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'group.groupNew'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<form action="{{ path('group_update', {'id': entity.id} ) }}" {{ form_enctype(edit_form) }} method="POST" class="group_edit">
+				<div class="block-content">
+			    	{{ form_widget(edit_form) }}
+					<div class="block-actions">
+						<ul class="actions-left">
+							<li><a class="button" href="{{ path('group') }}">{{'group.backToTheList'|trans([], 'BatnaUserBundle')  }}</a></li>
+						</ul>
+						<ul class="actions-right">
+							<li><input type="submit" class="button" value="{{ 'group.submitEdit'|trans([], 'BatnaUserBundle') }}" /></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

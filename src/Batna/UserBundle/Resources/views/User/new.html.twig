@@ -1,0 +1,28 @@
+{% extends 'BatnaUserBundle::layout.html.twig' %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'user.userCreation'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<form action="{{ path('user_create') }}" method="post" {{ form_enctype(form) }}>
+				    {{ form_widget(form) }}
+					<div class="block-actions">
+						<ul class="actions-left">
+							<li><a href="{{ path('user') }}" class="button">{{ 'user.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>
+						</ul>
+						<ul class="actions-right">
+							<li>
+				            	<input type="submit" value="{{ 'user.create'|trans({}, 'BatnaUserBundle') }}" class="button">
+				        	</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

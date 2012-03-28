@@ -1,0 +1,184 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <link rel=dns-prefetch href="//fonts.googleapis.com">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{{ 'app.title'|trans({}, 'BatnaUserBundle') }}</title>
+  <meta name="description" content="Application de monitoring Siebel">
+  <meta name="author" content="Etienne Le Montreer - Batna Consulting">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}"> <!-- Generic style (Boilerplate) -->
+  <link rel="stylesheet" href="{{ asset('css/960.fluid.css') }}"> <!-- 960.gs Grid System -->
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}"> <!-- Complete Layout and main styles -->
+  <link rel="stylesheet" href="{{ asset('css/buttons.css') }}"> <!-- Buttons, optional -->
+  <link rel="stylesheet" href="{{ asset('css/lists.css') }}"> <!-- Lists, optional -->
+  <link rel="stylesheet" href="{{ asset('css/icons.css') }}"> <!-- Icons, optional -->
+  <link rel="stylesheet" href="{{ asset('css/notifications.css') }}"> <!-- Notifications, optional -->
+  <link rel="stylesheet" href="{{ asset('css/typography.css') }}"> <!-- Typography -->
+  <link rel="stylesheet" href="{{ asset('css/forms.css') }}"> <!-- Forms, optional -->
+  <link rel="stylesheet" href="{{ asset('css/tables.css') }}"> <!-- Tables, optional -->
+  <link rel="stylesheet" href="{{ asset('css/charts.css') }}"> <!-- Charts, optional -->
+  <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.8.15.custom.css') }}"> <!-- jQuery UI, optional -->
+  <!-- end CSS-->
+  
+  <link href="//fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
+ 
+  <script src="{{ asset('js/libs/modernizr-2.0.6.min.js') }}"></script>
+</head>
+
+<body id="top">
+  <div id="container">
+    <div id="header-surround"><header id="header">
+    	<img src="{{ asset('img/logo.png') }}" alt="Batna Consulting" class="logo">
+		<div class="divider-header divider-vertical"></div>
+		
+		
+		
+		<!-- Begin of #user-info -->
+		<div id="user-info">
+			<p>
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <span class="messages">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} ( <a href="javascript:void(0);"><img src="{{ asset('img/icons/packs/fugue/16x16/mail.png') }}" alt="Messages"> 3 {{ 'dashboard.newMessage'|trans({}, 'BatnaUserBundle') }}</a> )</span>
+				<a href="{{ path('fos_user_profile_show') }}" class="toolbox-action button">{{ 'dashboard.settings'|trans({}, 'BatnaUserBundle') }}</a> <a href="{{ path('fos_user_security_logout') }}" class="button red">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+				
+			</p>
+		</div> <!--! end of #user-info -->
+		
+    </header></div> <!--! end of #header -->
+    
+    <div class="fix-shadow-bottom-height"></div>
+	
+	<!-- Begin of Sidebar -->
+    <aside id="sidebar">
+    	
+    	<!-- Search -->
+    	<div id="search-bar">
+			<form id="search-form" name="search-form" action="search.php" method="post">
+				<input type="text" id="query" name="query" value="" autocomplete="off" placeholder="Search">
+			</form>
+		</div> <!--! end of #search-bar -->
+		
+		<!-- Begin of #login-details -->
+		<section id="login-details">
+    		<img class="img-left framed" src="{{ asset('img/misc/avatar_small.png') }}" alt="Hello Admin">
+    		<h3>{{ 'dashboard.logged_in_as'|trans({}, 'BatnaUserBundle') }}</h3>
+    		<h2><a class="user-button" href="javascript:void(0);">{{ app.user.username }}&nbsp;<span class="arrow-link-down"></span></a></h2>
+    		<ul class="dropdown-username-menu">
+    			<li><a href="#">{{ 'dashboard.profile'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+    			<li><a href="#">{{ 'dashboard.settings'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+    			<li><a href="#">{{ 'dashboard.messages'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+    			<li><a href="{{ path('fos_user_security_logout') }}">{{ 'dashboard.logout'|trans({}, 'BatnaUserBundle') }}</a></li>
+    		</ul>
+    		
+    		<div class="clearfix"></div>
+  		</section> <!--! end of #login-details -->
+    	
+    	<!-- Begin of Navigation -->
+    	<nav id="nav">
+	    	<ul class="menu collapsible shadow-bottom">
+	    		<li><a href="{{ path('BatnaUserBundle_homepage') }}"><img src="{{ asset('img/icons/packs/fugue/16x16/dashboard.png') }}">{{ 'app.administration'|trans({}, 'BatnaUserBundle') }}</a>
+	    			<ul class="sub">
+	    				<li><a href="{{ path('BatnaUserBundle_homepage') }}">{{ 'dashboard.dashboard'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TBC</strong></em></a></li>
+	    				<li><a href="#">{{ 'app.messages'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li><a href="#">{{ 'app.alerts'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li><a href="{{ path('user') }}">{{ 'dashboard.userManagement'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li><a href="{{ path('group') }}">{{ 'dashboard.groupManagement'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    			</ul>
+	    		</li>
+	    		<li><a href="#"><img src="{{ asset('img/icons/packs/fugue/16x16/application-list.png') }}">{{ 'dashboard.referentiel'|trans({}, 'BatnaUserBundle') }}</a>
+	    			<ul class="sub">
+	    				<li><a href="#">{{ 'dashboard.gateway'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li><a href="#">{{ 'dashboard.enterpriseServer'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li><a href="#">{{ 'dashboard.siebelServer'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    			</ul>
+	    		</li>
+	    	</ul>
+    	</nav> <!--! end of #nav -->
+    	
+    </aside> <!--! end of #sidebar -->
+    
+    <!-- Begin of #main -->
+    <div id="main" role="main">
+    	
+    	{% block titlebar %}{% endblock %}
+    	
+		<div class="shadow-bottom shadow-titlebar"></div>
+		
+    	{% block corps %}{% endblock %}
+    	
+		
+  	</div> <!--! end of #main -->
+
+  </div> <!--! end of #container -->
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{ asset('js/libs/jquery-1.6.2.min.js') }}"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="{{ asset('js/plugins.js') }}"></script> <!-- lightweight wrapper for consolelog, optional -->
+  <script defer src="{{ asset('js/mylibs/jquery-ui-1.8.15.custom.min.js') }}"></script> <!-- jQuery UI -->
+  <script defer src="{{ asset('js/mylibs/jquery.notifications.js') }}"></script> <!-- Notifications  -->
+  <script defer src="{{ asset('js/mylibs/jquery.uniform.min.js') }}"></script> <!-- Uniform (Look & Feel from forms) -->
+  <script defer src="{{ asset('js/mylibs/jquery.validate.min.js') }}"></script> <!-- Validation from forms -->
+  <script defer src="{{ asset('js/mylibs/jquery.dataTables.min.js') }}"></script> <!-- Tables -->
+  <script defer src="{{ asset('js/mylibs/jquery.tipsy.js') }}"></script> <!-- Tooltips -->
+  <script defer src="{{ asset('js/mylibs/excanvas.js') }}"></script> <!-- Charts -->
+  <script defer src="{{ asset('js/mylibs/jquery.visualize.js') }}"></script> <!-- Charts -->
+  <script defer src="{{ asset('js/mylibs/jquery.slidernav.min.js') }}"></script> <!-- Contact List -->
+  <script defer src="{{ asset('js/common.js') }}"></script> <!-- Generic functions -->
+  <script defer src="{{ asset('js/script.js') }}"></script> <!-- Generic scripts -->
+  
+  <script type="text/javascript">
+	$().ready(function() {
+		
+		/*
+		 * Form Validation
+		 */
+		$.validator.setDefaults({
+			submitHandler: function(e) {
+				$.jGrowl("Form was successfully submitted.", { theme: 'success' });
+				$(e).parent().parent().fadeOut();
+				v.resetForm();
+				v2.resetForm();
+				v3.resetForm();
+			}
+		});
+		var v = $("#create-user-form").validate();
+		jQuery("#reset").click(function() { v.resetForm(); $.jGrowl("User was not created!", { theme: 'error' }); });
+		
+		var v2 = $("#write-message-form").validate();
+		jQuery("#reset2").click(function() { v2.resetForm(); $.jGrowl("Message was not sent.", { theme: 'error' }); });
+		
+		var v3 = $("#create-folder-form").validate();
+		jQuery("#reset3").click(function() { v3.resetForm(); $.jGrowl("Folder was not created!", { theme: 'error' }); });
+		
+		var validateform = $("#validate-form").validate();
+		$("#reset-validate-form").click(function() {
+			validateform.resetForm();
+			$.jGrowl("Blogpost was not created.", { theme: 'error' });
+		});
+	});
+  </script>
+
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>

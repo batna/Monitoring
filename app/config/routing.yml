@@ -1,7 +1,3 @@
-BatnaUserBundle:
-    resource: "@BatnaUserBundle/Resources/config/routing.yml"
-    prefix:   /user
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -20,3 +16,11 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+FOS_user_group:
+    resource: "@BatnaUserBundle/Resources/config/routing/group.yml"
+    prefix: /group
+    
+Batna_User:
+    resource: "@BatnaUserBundle/Resources/config/routing.yml"
+    prefix:   /

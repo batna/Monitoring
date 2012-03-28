@@ -1,3 +1,12 @@
+BatnaUserBundle_user:
+    resource: "@BatnaUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+BatnaUserBundle_group:
+    resource: "@BatnaUserBundle/Resources/config/routing/group.yml"
+    prefix:   /group
+
 BatnaUserBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BatnaUserBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: "BatnaUserBundle:Dashboard:index" }
+
