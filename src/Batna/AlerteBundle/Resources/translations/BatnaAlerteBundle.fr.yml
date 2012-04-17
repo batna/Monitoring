@@ -1,0 +1,34 @@
+cat:
+  mainTitle: Gestion des catégories d'alertes
+  indexTitle: Liste des catégories d'alertes
+  showTitle: Consultation d'une catégorie d'alertes
+  editTitle: Modification d'une catégorie d'alertes
+  newTitle: Nouvelle catégorie d'alertes
+  libelle: Libellé
+  type: Type
+  backToTheList: Retour à la liste
+  actions: Actions
+  create: Créer
+  delete: Supprimer
+  edit: Modifier
+  empty: Aucune catégorie n'a été déclarée pour le moment.
+seuil:
+  mainTitle: Gestion des seuils d'alertes
+  indexTitle: Liste des seuils d'alertes
+  showTitle: Consultation d'un seuil d'alerte
+  editTitle: Modification d'une seuil d'alerte
+  newTitle: Nouveau seuil d'alerte
+  categorie: Catégorie
+  diffusion: Liste de diffusion
+  debut: Début
+  fin: Fin
+  unite: Unité
+  severite: Sévérité
+  titre: Titre
+  message: Message
+  backToTheList: Retour à la liste
+  actions: Actions
+  create: Créer
+  delete: Supprimer
+  edit: Modifier
+  empty: Aucun seuil n'a été déclaré pour le moment.

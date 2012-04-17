@@ -1,0 +1,30 @@
+alert:
+    pattern:  /
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:index" }
+
+alert_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:show" }
+
+alert_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:new" }
+
+alert_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:create" }
+    requirements: { _method: post }
+
+alert_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:edit" }
+
+alert_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:update" }
+    requirements: { _method: post }
+
+alert_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaAlerteBundle:Alerte:delete" }
+    requirements: { _method: post }

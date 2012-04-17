@@ -1,0 +1,96 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'es.esManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'es.esView'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table>
+				    <tbody>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Name'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.name }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Fullname'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.fullName }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Description'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.description }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Signature'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.signature }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Enablestate'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.enableState }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Objectid'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.objectId }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Version'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.version }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Attrattrdatabaseplatform'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.attrDatabasePlatform }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Attrusemsstored'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.attrUseMSStored }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Attrdescription'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.attrDescription }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Attrdatabaseconstr'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.attrDatabaseConStr }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Serversequence'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.serverSequence }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Componentgroupsequence'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.ComponentGroupSequence }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Componentsequence'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.ComponentSequence }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'es.Namedsubsystemsequence'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.namedSubsystemSequence }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('es') }}" class="button">{{ 'es.backToTheList'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('es_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" onClick="if(confirm('{{ 'es.confirmDelete'|trans({}, 'BatnaSiebelBundle') }}')) return true; else return false;" value="{{ 'es.delete'|trans({}, 'BatnaSiebelBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('es_edit', { 'id': entity.id }) }}" class="button">{{ 'es.edit'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+<h1>Seuil</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Debut</th>
+            <td>{{ entity.debut }}</td>
+        </tr>
+        <tr>
+            <th>Fin</th>
+            <td>{{ entity.fin }}</td>
+        </tr>
+        <tr>
+            <th>Unite</th>
+            <td>{{ entity.unite }}</td>
+        </tr>
+        <tr>
+            <th>Severite</th>
+            <td>{{ entity.severite }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ entity.titre }}</td>
+        </tr>
+        <tr>
+            <th>Message</th>
+            <td>{{ entity.message }}</td>
+        </tr>
+        <tr>
+            <th>Variables</th>
+            <td>{{ entity.variables }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('seuil') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('seuil_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('seuil_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

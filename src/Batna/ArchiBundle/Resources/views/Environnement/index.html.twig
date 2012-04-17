@@ -1,0 +1,100 @@
+{% extends 'BatnaArchiBundle::layout.html.twig' %}
+
+{%  block maintitle %}{{ 'env.envManagement'|trans([], 'BatnaArchiBundle') }}{% endblock %}
+
+{% block corps %}
+{% block flash %}{% endblock %}
+<div class="container_12">
+	<div class="grid_12">
+		<div class="block-border">
+			<div class="block-content">
+				<p><em>INFO :</em> Un environnement est une sous division du contexte auquel il se rattache. Par exemlpe il sera possible d'avoir des environnements DEV1, DEV2 ou DEV TMA dans le contexte de Développement. Un second exemple pour le contexte de production avec les environnements de PROD Pilote et PROD Cible.</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'env.envList'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entities is empty %}
+			<p>{{ 'env.noEnv'|trans([], 'BatnaArchiBundle') }}</p>
+			{% else %}
+				<table style="margin:10px;">
+				    <thead>
+				        <tr>
+				            <th>{{ 'env.actions'|trans([], 'BatnaArchiBundle') }}</th>
+				            <th>{{ 'env.shortName'|trans([], 'BatnaArchiBundle') }}</th>
+				            <th>{{ 'env.longName'|trans([], 'BatnaArchiBundle') }}</th>
+				            <th>{{ 'env.description'|trans([], 'BatnaArchiBundle') }}</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    {% for entity in entities %}
+				        <tr>
+				            <td>
+				            	<a href="{{ path('env_show', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('env_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				          	</td>
+				            <td>{{ entity.shortName }}</td>
+				            <td>{{ entity.longName }}</td>
+				            <td>{{ entity.description }}</td>
+				        </tr>
+				    {% endfor %}
+				    </tbody>
+				</table>
+				{% endif %}
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('env_new') }}" class="button">{{ 'env.newEnv'|trans([], 'BatnaArchiBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% block variables %}
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'var.envVarList'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if variables is empty %}
+			<p>Aucune variable d'environnement n'est déclarée pour le moment.</p>
+			{% else %}
+				<table style="margin:10px;">
+				    <thead>
+				        <tr>
+				            <th>Actions</th>
+				            <th>Name</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    {% for variable in variables %}
+				        <tr>
+				            <td>
+				            	<a href="{{ path('varEnv_show', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('varEnv_edit', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				          	</td>
+				            <td>{{ variable.name }}</td>
+				        </tr>
+				    {% endfor %}
+				    </tbody>
+				</table>
+				{% endif %}
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('varEnv_new') }}" class="button">{{ 'var.newVar'|trans([], 'BatnaArchiBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+</div>
+
+{% endblock %}

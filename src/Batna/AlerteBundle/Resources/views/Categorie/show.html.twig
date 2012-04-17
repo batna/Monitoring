@@ -1,0 +1,93 @@
+{% extends 'BatnaAlerteBundle::layout.html.twig' %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_4">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'cat.showTitle'|trans({}, 'BatnaAlerteBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table style="margin:10px;">
+				    <tbody>
+				        <tr>
+				            <th>{{ 'cat.type'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <td>{{ entity.type }}</td>
+				        </tr>
+				        <tr>
+				            <th>{{ 'cat.libelle'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <td>{{ entity.libelle }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('cat') }}" class="button">{{ 'cat.backToTheList'|trans({}, 'BatnaAlerteBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						<li>
+							<form action="{{ path('cat_delete', { 'id': entity.id }) }}" method="post">
+				            	{{ form_widget(delete_form) }}
+				            	<input type="submit" value="{{ 'cat.delete'|trans({}, 'BatnaAlerteBundle') }}" class="button red">
+				            </form>
+			            </li>
+			            <li>
+			            	<a href="{{ path('cat_edit', { 'id': entity.id }) }}" class="button">{{ 'cat.edit'|trans({}, 'BatnaAlerteBundle') }}</a>
+			            </li>
+					</ul>
+				</div>
+			</div>	
+		</div>
+	</div>
+	{% block seuils %}
+	<div class="grid_8">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'seuil.indexTitle'|trans({}, 'BatnaAlerteBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if seuils is empty %}
+				<p>{{ 'seuil.empty'|trans({}, 'BatnaAlerteBundle') }}</p>
+			{% else %}
+				<table id="table-cat" style="margin:10px">
+				    <thead>
+				    	<tr>
+						    <th>{{  'seuil.actions'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <th>{{  'seuil.debut'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <th>{{  'seuil.fin'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <th>{{  'seuil.unite'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <th>{{  'seuil.severite'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <th>{{  'seuil.titre'|trans({}, 'BatnaAlerteBundle') }}</th>
+				            <th>{{  'seuil.message'|trans({}, 'BatnaAlerteBundle') }}</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    {% for seuil in seuils %}
+				    	<tr>
+				            <td>
+				            	<a href="{{ path('seuil_show', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('seuil_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				            </td>
+				            <td>{{ seuil.debut }}</td>
+				            <td>{{ seuil.fin }}</td>
+				            <td>{{ seuil.unite }}</td>
+				            <td>{{ seuil.severite }}</td>
+				            <td>{{ seuil.titre }}</td>
+				            <td>{{ seuil.message }}</td>
+				        </tr>
+				    {% endfor %}
+				    </tbody>
+				</table>
+				{% endif %}
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('seuil_new') }}" class="button">{{ 'seuil.create'|trans({}, 'BatnaAlerteBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+		{% endblock %}
+	</div>
+
+{% endblock %}

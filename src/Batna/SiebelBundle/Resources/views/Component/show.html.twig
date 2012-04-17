@@ -1,0 +1,146 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'cmp.cmpManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'cmp.cmpView'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table>
+				    <tbody>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.componentGroup'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.componentGroup }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.name'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.name }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.runmode'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.runMode }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.incarnationnumber'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.incarnationNumber }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.fullname'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.fullName }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.description'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.description }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.componenttype'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.componentType }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.servicetype'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.serviceType }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.enablestate'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.enableState }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.objectid'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.objectId }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.writeflag'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.writeFlag }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.configfile'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.configFile }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.datasource'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.dataSource }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.nameddatasource'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.namedDataSource }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'cmp.lang'|trans([], 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.lang }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('cmp') }}" class="button">{{ 'cmp.backToTheList'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('cmp_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" onClick="if(confirm('{{ 'cmp.confirmDelete'|trans({}, 'BatnaSiebelBundle') }}')) return true; else return false;" value="{{ 'cmp.delete'|trans({}, 'BatnaSiebelBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('cmp_edit', { 'id': entity.id }) }}" class="button">{{ 'cmp.edit'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'cmp.listParams'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entity.parameters is empty %}
+				<p>Aucun paramètre n'est définit pour le moment</p>
+			{% else %}
+				<table style="margin:10px">
+				<tr>
+					<td></td>
+					<th>Paramètre</th>
+					<th>Valeur</th>
+				</tr>
+				{% for parameter in entity.parameters %}
+					<tr>
+						<td>
+							<form action="{{ path('cmp_remove_parameter', {'id': entity.id }) }}" method="post">
+								<input type="hidden" name="cmp" value="{{ entity.id }}" />
+								<input type="hidden" name="param" value="{{ parameter.0 }}" />
+								<input type="hidden" name="value" value="{{ parameter.1 }}" />
+								<input type=submit class="button red" value="{{ 'cmp.delete'|trans({}, 'BatnaSiebelBundle') }}" />
+							</form>
+						</td>
+						<td>{{ parameter.0 }}</td>
+						<td>{{ parameter.1 }}</td>
+					</tr>
+				{% endfor %}
+				</table>
+			{% endif %}
+				<fieldset>
+					<label>Nouveau paramètre pour ce composant</label>
+					<form action="{{ path('cmp_add_parameter', {'id': entity.id }) }}" method="post">
+						<table>
+							<tr>
+								<td>Paramètre : </td>
+								<td>Valeur : </td>
+							</tr>
+							<tr>
+								<td><input type="text" name="parameter" value="" /></td>
+								<td><input type="text" name="value" value="" /></td>
+								<td><input type="hidden" name="id" value="{{ entity.id }}" /><input type="submit" class="button" value="{{ 'cmp.addParameterSubmit'|trans({}, 'BatnaSiebelBundle') }}" /></td>
+							</tr>
+						</table>
+						</form>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

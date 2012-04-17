@@ -1,0 +1,30 @@
+ctxt:
+    pattern:  /
+    defaults: { _controller: "BatnaArchiBundle:Contexte:index" }
+
+ctxt_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Contexte:show" }
+
+ctxt_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaArchiBundle:Contexte:new" }
+
+ctxt_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaArchiBundle:Contexte:create" }
+    requirements: { _method: post }
+
+ctxt_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Contexte:edit" }
+
+ctxt_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Contexte:update" }
+    requirements: { _method: post }
+
+ctxt_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Contexte:delete" }
+    requirements: { _method: post }

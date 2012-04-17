@@ -1,0 +1,40 @@
+{% extends 'BatnaArchiBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'context.contextManagement'|trans([], 'BatnaArchiBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'context.contextConsult'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table style="margin:10px;">
+				    <tbody>
+				        <tr>
+				            <th>Nom : </th>
+				            <td>{{ entity.name }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('ctxt') }}" class="button">{{ 'context.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('ctxt_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" value="{{ 'context.delete'|trans({}, 'BatnaArchiBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('ctxt_edit', { 'id': entity.id }) }}" class="button">{{ 'context.edit'|trans({}, 'BatnaArchiBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{%  endblock %}

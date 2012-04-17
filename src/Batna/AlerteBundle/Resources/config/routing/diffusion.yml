@@ -1,0 +1,30 @@
+diff:
+    pattern:  /
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:index" }
+
+diff_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:show" }
+
+diff_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:new" }
+
+diff_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:create" }
+    requirements: { _method: post }
+
+diff_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:edit" }
+
+diff_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:update" }
+    requirements: { _method: post }
+
+diff_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaAlerteBundle:Diffusion:delete" }
+    requirements: { _method: post }

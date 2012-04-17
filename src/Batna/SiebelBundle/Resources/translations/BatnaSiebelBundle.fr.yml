@@ -1,0 +1,155 @@
+gtw:
+  actions: Actions
+  name: Nom
+  port: Port
+  noGtw: Aucune gateway n'a été déclarée pour le moment.
+  newGtw: Nouvelle passerelle
+  gtwManagement: Gestion des passerelles
+  gtwList: Liste des passerelles
+  gtwEdit: Modification d'une passerelle
+  gtwView: Détail d'une passerelle
+  backToTheList: Retour à la liste
+  create: Créer
+  delete: Supprimer
+  edit: Modifier
+  configLog: Historique des modifications
+  noConfig: Aucune configuration n'est enregistrée pour cette passerelle.
+  date: Date
+  description: Description
+  send: Envoyer
+  host: Machine
+  environnement: Environnement
+  version: Version
+  fullname: Nom complet
+  enableState: Etat
+  objectId: ID
+  createDefault: Création par défaut
+  useDefault: Utilisation par défaut
+  confirmDelete: Etes vous sur de vouloir supprimer cette gateway ?
+  currentFile: Fichier siebns actuel
+cmp:
+  actions: Actions
+  name: Nom
+  runmode: Mode
+  incarnationnumber: Numero d'incarnation
+  fullname: Nom complet
+  description: Description
+  componenttype: Type de composant
+  servicetype: Type de service
+  enablestate: Status
+  objectid: ID
+  writeflag: Flag d'ecriture
+  configfile: Fichier de configuration
+  datasource: Source de données
+  nameddatasource: Source de données nommée
+  lang: Langue
+  parameters: Paramètres
+  noCmp: Aucun composant n'a été déclaré pour le moment.
+  newCmp: Nouveau composant
+  cmpManagement: Gestion des composants
+  cmpList: Liste des composants
+  cmpEdit: Modification d'un composant
+  cmpView: Détail d'un composant
+  backToTheList: Retour à la liste
+  create: Créer
+  delete: Delete
+  edit: Modifier
+  noConfig: Aucune configuration n'est enregistrée pour ce composant.
+  date: Date
+  description: Description
+  send: Envoyer
+  confirmDelete: Etes vous sur de vouloir supprimer ce composant ?
+  addParameterSubmit: Créer
+  listParams: Liste des paramètres
+  componentGroup: Groupe de composant
+cg:
+  actions: Actions
+  name: Nom
+  description: Description
+  fullname: Nom complet
+  enablestate: Status
+  objectid: ID
+  noCg: Aucun groupe de composants n'a été déclaré pour le moment.
+  newCg: Nouveau groupe de composants
+  cgManagement: Gestion des groupes de composants
+  cgList: Liste des groupes de composants
+  cgEdit: Modification d'un groupe de composants
+  cgView: Détail d'un groupe de composants
+  backToTheList: Retour à la liste
+  create: Créer
+  delete: Delete
+  edit: Modifier
+  date: Date
+  description: Description
+  send: Envoyer
+  confirmDelete: Etes vous sur de vouloir supprimer ce groupe de composants ?
+  addParameterSubmit: Créer
+ns:
+  nsEdit: Modification d'un sous sytème nommé
+  backToTheList: Retour à la liste
+  edit: Modifier
+  delete: Supprimer
+  create: Créer
+  actions: Actions
+  name: Nom
+  fullname: Nom complet
+  description: Description
+  enablestate: Status
+  subsystemname: Nom du sous system
+  objectid: ID
+  parameters: Paramètres
+  nsManagement: Gestion des sous systèmes nommés
+  noNs: Aucun sous système n'a été déclaré pour le moment.
+  confirmDelete: Etes vous sur de vouloir supprimer ce sous système ?
+  newNs: Nouveau sous système
+  nsList: List des sous systèmes nommés
+  addParameterSubmit: Ajouter le paramètre
+  nsView: Détail d'un sous système nommé
+  listParams: List des paramètres
+ss:
+  ssManagement: Gestion des Siebel Servers
+  ssList: Liste des Siebel Servers
+  noss: Aucun Siebel Server n'est déclaré pour le moment
+  newss: Nouveau Siebel Server
+  delete: Supprimer
+  create: Créer
+  ssView: Consultation d'un Siebel Server
+  backToTheList: Retour à la liste
+  edit: Modifier
+  ssEdit: Edition d'un Siebel Server
+  Actions: Actions
+  Name: Nom
+  Description: Description
+  Fullname: Nom complet
+  Enablestate: Status
+  Objectid: ID
+  Version: Version
+  Eventlog: Log événementielles
+  Enterprise: Enterprise
+es:
+  esManagement: Gestion des Enterprise Servers
+  esList: Liste des Enterprise Servers
+  noes: Aucun Enterprise Server n'est déclaré pour le moment
+  newes: Nouvel Enterprise Server
+  delete: Supprimer
+  create: Créer
+  esView: Consultation d'un Enterprise Server
+  backToTheList: Retour à la liste
+  edit: Modifier
+  esEdit: Edition d'un Enterprise Server
+  Actions: Actions
+  Name: Nom
+  Fullname: Nom complet 
+  Description: Description
+  Signature: Signature
+  Enablestate: Status
+  Objectid: ID
+  Version: Version
+  Attrdatabaseplatform: Plateforme BDD
+  Attrusemsstored: Utilisation MS stocké
+  Attrdescription: Description
+  Attrdatabaseconstr: Chaîne de connection BDD
+  Serversequence: Nombre de servers
+  Componentgroupsequence: Nombre de groupes de composants
+  Componentsequence: nombre de composants
+  Namedsubsystemsequence: nombre de sous systèmes

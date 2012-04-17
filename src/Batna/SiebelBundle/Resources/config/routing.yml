@@ -1,0 +1,27 @@
+BatnaSiebelBundle_gtw:
+    resource: "@BatnaSiebelBundle/Resources/config/routing/gateway.yml"
+    prefix:   /gtw
+
+BatnaSiebelBundle_es:
+        resource: "@BatnaSiebelBundle/Resources/config/routing/enterprise.yml"
+        prefix:   /es
+
+BatnaSiebelBundle_ss:
+        resource: "@BatnaSiebelBundle/Resources/config/routing/server.yml"
+        prefix:   /ss
+
+BatnaSiebelBundle_cmp:
+        resource: "@BatnaSiebelBundle/Resources/config/routing/component.yml"
+        prefix:   /cmp
+
+BatnaSiebelBundle_cg:
+        resource: "@BatnaSiebelBundle/Resources/config/routing/componentgroup.yml"
+        prefix:   /cg
+
+BatnaSiebelBundle_ns:
+        resource: "@BatnaSiebelBundle/Resources/config/routing/namedsubsystem.yml"
+        prefix:   /ns
+
+BatnaSiebelBundle_siebns:
+        resource: "@BatnaSiebelBundle/Resources/config/routing/siebns.yml"
+        prefix:   /siebns

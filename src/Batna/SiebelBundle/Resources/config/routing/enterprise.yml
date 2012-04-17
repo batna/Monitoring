@@ -1,0 +1,30 @@
+es:
+    pattern:  /
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:index" }
+
+es_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:show" }
+
+es_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:new" }
+
+es_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:create" }
+    requirements: { _method: post }
+
+es_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:edit" }
+
+es_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:update" }
+    requirements: { _method: post }
+
+es_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:delete" }
+    requirements: { _method: post }

@@ -1,0 +1,30 @@
+gtw:
+    pattern:  /
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:index" }
+
+gtw_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:show" }
+
+gtw_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:new" }
+
+gtw_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:create" }
+    requirements: { _method: post }
+
+gtw_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:edit" }
+
+gtw_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:update" }
+    requirements: { _method: post }
+
+gtw_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaSiebelBundle:Gateway:delete" }
+    requirements: { _method: post }

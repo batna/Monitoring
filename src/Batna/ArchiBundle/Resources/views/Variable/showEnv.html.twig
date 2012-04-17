@@ -1,0 +1,42 @@
+{% extends 'BatnaArchiBundle:Environnement:index.html.twig' %}
+
+{% block variables %}
+
+<div class="grid_6">
+	<div class="block-border">
+		<div class="block-header">
+			<h1>{{ 'var.newVar'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
+		</div>
+		<div class="block-content">
+			<table style="margin:10px;">
+			    <tbody>
+			        <tr>
+			            <th>{{ 'var.name'|trans({}, 'BatnaArchiBundle') }} : </th>
+			            <td>{{ entity.name }}</td>
+			        </tr>
+			    </tbody>
+			</table>
+			<div class="block-actions">
+				<ul class="actions-left">
+				    <li>
+				        <a href="{{ path('env') }}" class="button">{{ 'env.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a>
+				    </li>
+				</ul>
+				<ul class="actions-right">
+					<li>
+						<a href="{{ path('varEnv_edit', { 'id': entity.id }) }}" class="button">{{ 'env.edit'|trans({}, 'BatnaArchiBundle') }}</a>
+					</li>
+				</form>
+					<li>
+						<form action="{{ path('varEnv_delete', { 'id': entity.id }) }}" method="post">
+				            {{ form_widget(delete_form) }}
+            				<input type="submit" class="button red" value="{{ 'env.delete'|trans({}, 'BatnaArchiBundle') }}" />
+        				</form>
+        			</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

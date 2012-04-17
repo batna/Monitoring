@@ -1,0 +1,50 @@
+context:
+  contextList: Liste des projets
+  contextManagement: Gestion des projets
+  newContext: Nouveau projet
+  contextConsult: Consultation d'un projet
+  contextEdit: Modification d'un projet
+  backToTheList: Retour à la liste
+  create: Créer
+  edit: Modifier
+  delete: Supprimer
+  noContext: Aucun projet n'a été défini pour le moment
+  actions: Actions
+  name: Nom
+env:
+  envList: Liste des environnements
+  envManagement: Gestion des environnements
+  newEnv: Nouvel environnement
+  envConsult: Consultation d'un environnement
+  envEdit: Modification d'un environnement
+  backToTheList: Retour à la liste
+  create: Créer
+  edit: Modifier
+  delete: Supprimer
+  actions: Actions
+  shortName: Nom court
+  longName: Nom long
+  description: Description
+  noEnv: Aucun environnement n'a été défini pour le moment
+host:
+  hostList: Liste des machines
+  hostManagement: Gestion des machiness
+  newHost: Nouvelle machine
+  hostConsult: Consultation d'une machine
+  hostEdit: Modification d'une machine
+  backToTheList: Retour à la liste
+  create: Créer
+  edit: Modifier
+  delete: Supprimer
+  actions: Actions
+  hostname: Nom
+  ip: IP
+  cpucore: Coeurs
+  cpufrequency: Fréquence
+  ram: Mémoire vive
+  noHost: Aucune machine n'a été définie pour le moment
+var:
+  contextVarList: Liste des variables de projet
+  envVarList: Liste des variables d'environnement
+  newVar: Nouvelle variable
+  name: Nom

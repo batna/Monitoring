@@ -1,0 +1,32 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{%  block maintitle %}{{ 'ss.ssManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'ss.newss'|trans([], 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<form action="{{ path('ss_create') }}" method="post" {{ form_enctype(form) }}>
+					<div style="margin:10px">
+					    {{ form_widget(form) }}
+					</div>    
+					<div class="block-actions">
+						<ul class="actions-left">
+							<li><a href="{{ path('ss') }}" class="button">{{ 'ss.backToTheList'|trans([], 'BatnaSiebelBundle') }}</a></li>
+						</ul>
+						<ul class="actions-right">
+							<li><input type="submit" class="button" value="{{ 'ss.create'|trans([], 'BatnaSiebelBundle') }}" />
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

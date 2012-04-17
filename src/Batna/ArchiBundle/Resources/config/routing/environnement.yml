@@ -1,0 +1,30 @@
+env:
+    pattern:  /
+    defaults: { _controller: "BatnaArchiBundle:Environnement:index" }
+
+env_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Environnement:show" }
+
+env_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaArchiBundle:Environnement:new" }
+
+env_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaArchiBundle:Environnement:create" }
+    requirements: { _method: post }
+
+env_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Environnement:edit" }
+
+env_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Environnement:update" }
+    requirements: { _method: post }
+
+env_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Environnement:delete" }
+    requirements: { _method: post }

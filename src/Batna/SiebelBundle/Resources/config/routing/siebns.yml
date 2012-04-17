@@ -1,0 +1,7 @@
+siebns:
+    pattern:  /{id}
+    defaults: { _controller: "BatnaSiebelBundle:Siebns:index" }
+
+siebns_default:
+    pattern:  /
+    defaults: { _controller: "BatnaSiebelBundle:Siebns:indexDefault" }

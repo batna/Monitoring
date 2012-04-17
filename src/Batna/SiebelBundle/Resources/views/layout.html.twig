@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block titlebar %}
+<!-- Begin of titlebar/breadcrumbs -->
+		<div id="title-bar">
+			<ul id="breadcrumbs">
+				<li><a href="{{ path('BatnaUserBundle_homepage') }}" title="Home"><span id="bc-home"></span></a></li>
+				<li class="no-hover">{% block maintitle %}{% endblock %}</li>
+			</ul>
+		</div> <!--! end of #title-bar -->
+{% endblock %}

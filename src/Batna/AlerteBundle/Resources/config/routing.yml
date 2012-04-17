@@ -1,0 +1,15 @@
+BatnaAlerteBundle_cat:
+        resource: "@BatnaAlerteBundle/Resources/config/routing/categorie.yml"
+        prefix:   /cat
+
+BatnaAlerteBundle_seuil:
+        resource: "@BatnaAlerteBundle/Resources/config/routing/seuil.yml"
+        prefix:   /seuil
+
+BatnaAlerteBundle_alert:
+        resource: "@BatnaAlerteBundle/Resources/config/routing/alerte.yml"
+        prefix:   /alert
+
+BatnaAlerteBundle_diff:
+        resource: "@BatnaAlerteBundle/Resources/config/routing/diffusion.yml"
+        prefix:   /diff

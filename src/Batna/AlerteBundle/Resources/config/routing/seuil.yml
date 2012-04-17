@@ -1,0 +1,30 @@
+seuil:
+    pattern:  /
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:index" }
+
+seuil_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:show" }
+
+seuil_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:new" }
+
+seuil_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:create" }
+    requirements: { _method: post }
+
+seuil_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:edit" }
+
+seuil_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:update" }
+    requirements: { _method: post }
+
+seuil_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaAlerteBundle:Seuil:delete" }
+    requirements: { _method: post }

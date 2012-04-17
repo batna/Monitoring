@@ -1,0 +1,39 @@
+cmp:
+    pattern:  /
+    defaults: { _controller: "BatnaSiebelBundle:Component:index" }
+
+cmp_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaSiebelBundle:Component:show" }
+
+cmp_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaSiebelBundle:Component:new" }
+
+cmp_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaSiebelBundle:Component:create" }
+    requirements: { _method: post }
+
+cmp_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaSiebelBundle:Component:edit" }
+
+cmp_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaSiebelBundle:Component:update" }
+    requirements: { _method: post }
+
+cmp_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaSiebelBundle:Component:delete" }
+    requirements: { _method: post }
+
+cmp_remove_parameter:
+    pattern:  /{id}/param/delete
+    defaults: { _controller: "BatnaSiebelBundle:Component:removeParameter" }
+    requirements: { _method: post }
+
+cmp_add_parameter:
+    pattern:  /{id}/param/add
+    defaults: { _controller: "BatnaSiebelBundle:Component:addParameter" }

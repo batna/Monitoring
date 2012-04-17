@@ -1,0 +1,7 @@
+parameters:
+#    batna_archi.example.class: Batna\ArchiBundle\Example
+
+services:
+#    batna_archi.example:
+#        class: %batna_archi.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

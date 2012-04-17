@@ -1,0 +1,35 @@
+{% extends 'BatnaAlerteBundle::layout.html.twig' %}
+
+{% block corps %}
+
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'cat.editTitle'|trans({}, 'BatnaAlerteBundle') }}</h1><span></span>
+			</div>
+			<form action="{{ path('cat_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+			<div class="block-content">
+				<div style="margin:10px">
+				    {{ form_widget(edit_form) }}
+				</div>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('cat') }}" class="button">{{ 'cat.backToTheList'|trans({}, 'BatnaAlerteBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+			            <li><input type="submit" class="button" value="{{ 'cat.edit'|trans({}, 'BatnaAlerteBundle') }}" /></li>
+						</form>
+						<li>
+							<form action="{{ path('cat_delete', { 'id': entity.id }) }}" method="post">
+				            	{{ form_widget(delete_form) }}
+				            	<input type="submit" value="{{ 'cat.delete'|trans({}, 'BatnaAlerteBundle') }}" class="button red">
+				            </form>
+			            </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

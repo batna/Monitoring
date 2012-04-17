@@ -1,0 +1,55 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{%  block maintitle %}{{ 'cg.cgManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+
+<div class="container_12">
+	<div class="grid_9">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'cg.cgList'|trans([], 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entities is empty %}
+			<p>{{ 'cg.noCg'|trans([], 'BatnaSiebelBundle') }}</p>
+			{% else %}
+				<table style="margin:10px;">
+				    <thead>
+				        <tr>
+				            <th>{{ 'cg.actions'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'cg.name'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'cg.fullname'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'cg.description'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'cg.enablestate'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'cg.objectid'|trans([], 'BatnaSiebelBundle') }}</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    {% for entity in entities %}
+				        <tr>
+				            <td>
+				            	<a href="{{ path('cg_show', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('cg_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				          	</td>
+				            <td>{{ entity.name }}</td>
+				            <td>{{ entity.fullName }}</td>
+				            <td>{{ entity.description }}</td>
+				            <td>{{ entity.enableState }}</td>
+				            <td>{{ entity.objectId }}</td>
+				        </tr>
+				    {% endfor %}
+				    </tbody>
+				</table>
+				{% endif %}
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('cg_new') }}" class="button">{{ 'cg.newCg'|trans([], 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

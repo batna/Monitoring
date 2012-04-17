@@ -1,0 +1,56 @@
+{% extends 'BatnaArchiBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'host.hostManagement'|trans([], 'BatnaArchiBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'host.hostEdit'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table style="margin:10px">
+				    <tbody>
+				        <tr>
+				            <th style="text-align:right">{{ 'host.hostname'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.hostname }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right">{{ 'host.ip'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.ip }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right">{{ 'host.ram'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.ram }}{% if entity.ram is not empty %} Mo{% endif %}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right">{{ 'host.cpucore'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.cpuCore }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right">{{ 'host.cpufrequency'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.cpuFrequency }}{% if entity.cpuFrequency is not empty %} MHz{% endif %}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('host') }}" class="button">{{ 'host.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('host_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" value="{{ 'host.delete'|trans({}, 'BatnaArchiBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('host_edit', { 'id': entity.id }) }}" class="button">{{ 'host.edit'|trans({}, 'BatnaArchiBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

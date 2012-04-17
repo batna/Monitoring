@@ -1,0 +1,61 @@
+varEnv:
+    pattern:  /env/
+    defaults: { _controller: "BatnaArchiBundle:Variable:indexEnv" }
+
+varEnv_show:
+    pattern:  /env/{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Variable:showEnv" }
+
+varEnv_new:
+    pattern:  /env/new
+    defaults: { _controller: "BatnaArchiBundle:Variable:newEnv" }
+
+varEnv_create:
+    pattern:  /env/create
+    defaults: { _controller: "BatnaArchiBundle:Variable:createEnv" }
+    requirements: { _method: post }
+
+varEnv_edit:
+    pattern:  /env/{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Variable:editEnv" }
+
+varEnv_update:
+    pattern:  /env/{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Variable:updateEnv" }
+    requirements: { _method: post }
+
+varEnv_delete:
+    pattern:  /env/{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Variable:deleteEnv" }
+    requirements: { _method: post }
+
+varCon:
+    pattern:  /con/
+    defaults: { _controller: "BatnaArchiBundle:Variable:indexCon" }
+
+varCon_show:
+    pattern:  /con/{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Variable:showCon" }
+
+varCon_new:
+    pattern:  /con/new
+    defaults: { _controller: "BatnaArchiBundle:Variable:newCon" }
+
+varCon_create:
+    pattern:  /con/create
+    defaults: { _controller: "BatnaArchiBundle:Variable:createCon" }
+    requirements: { _method: post }
+
+varCon_edit:
+    pattern:  /con/{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Variable:editCon" }
+
+varCon_update:
+    pattern:  /con/{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Variable:updateCon" }
+    requirements: { _method: post }
+
+varCon_delete:
+    pattern:  /con/{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Variable:deleteCon" }
+    requirements: { _method: post }

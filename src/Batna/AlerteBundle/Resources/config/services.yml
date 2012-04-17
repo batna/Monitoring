@@ -1,0 +1,7 @@
+parameters:
+#    batna_alerte.example.class: Batna\AlerteBundle\Example
+
+services:
+#    batna_alerte.example:
+#        class: %batna_alerte.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

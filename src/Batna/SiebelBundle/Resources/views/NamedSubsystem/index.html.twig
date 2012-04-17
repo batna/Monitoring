@@ -1,0 +1,59 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{%  block maintitle %}{{ 'ns.nsManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'ns.nsList'|trans([], 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entities is empty %}
+			<p>{{ 'ns.noNs'|trans([], 'BatnaSiebelBundle') }}</p>
+			{% else %}
+				<table style="margin:10px;">
+				    <thead>
+				        <tr>
+				            <th>{{ 'ns.actions'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.enterprise'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.name'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.fullname'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.description'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.enablestate'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.subsystemname'|trans([], 'BatnaSiebelBundle') }}</th>
+				            <th>{{ 'ns.objectid'|trans([], 'BatnaSiebelBundle') }}</th>
+        				</tr>
+				    </thead>
+				    <tbody>
+				    {% for entity in entities %}
+				        <tr>
+				            <td>
+				            	<a href="{{ path('ns_show', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+				                <a href="{{ path('ns_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				          	</td>
+				            <td>{{ entity.name }}</td>
+				            <td>{{ entity.enterprise }}</td>
+				            <td>{{ entity.fullName }}</td>
+				            <td>{{ entity.description }}</td>
+				            <td>{{ entity.enableState }}</td>
+				            <td>{{ entity.subsystemName }}</td>
+				            <td>{{ entity.objectId }}</td>
+        				</tr>
+				    {% endfor %}
+				    </tbody>
+				</table>
+				{% endif %}
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('ns_new') }}" class="button">{{ 'ns.newNs'|trans([], 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

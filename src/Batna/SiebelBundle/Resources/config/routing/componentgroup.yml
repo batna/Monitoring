@@ -1,0 +1,30 @@
+cg:
+    pattern:  /
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:index" }
+
+cg_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:show" }
+
+cg_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:new" }
+
+cg_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:create" }
+    requirements: { _method: post }
+
+cg_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:edit" }
+
+cg_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:update" }
+    requirements: { _method: post }
+
+cg_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaSiebelBundle:ComponentGroup:delete" }
+    requirements: { _method: post }

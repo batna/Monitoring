@@ -1,0 +1,86 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'gtw.gtwManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'gtw.gtwView'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table>
+				    <tbody>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.host'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.host }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.environnement'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.environnement }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.port'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.port }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.name'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.name }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.version'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.version }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.description'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.description }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.fullname'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.fullName }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.enableState'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.enableState }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.objectId'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.objectId }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.createDefault'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.createDefault }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.useDefault'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.useDefault }}</td>
+				        </tr>
+				        {% if entity.currentFile is not empty %}
+				        <tr>
+				            <th style="text-align:right;">{{ 'gtw.currentFile'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.currentFile }}</td>
+				        </tr>
+				        {% endif %}
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('gtw') }}" class="button">{{ 'gtw.backToTheList'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('gtw_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" onClick="if(confirm('{{ 'gtw.confirmDelete'|trans({}, 'BatnaSiebelBundle') }}')) return true; else return false;" value="{{ 'gtw.delete'|trans({}, 'BatnaSiebelBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('gtw_edit', { 'id': entity.id }) }}" class="button">{{ 'gtw.edit'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

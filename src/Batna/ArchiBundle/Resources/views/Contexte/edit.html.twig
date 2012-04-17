@@ -1,0 +1,37 @@
+{% extends 'BatnaArchiBundle::layout.html.twig' %}
+
+{% block maintitle %}Modification d'un contexte{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'context.contextEdit'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<form action="{{ path('ctxt_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+				    <div style="margin:10px;">
+					{{ form_widget(edit_form) }}
+					</div>
+					<div class="block-actions">
+						<ul class="actions-left">
+							<li><a href="{{ path('ctxt') }}" class="button">{{ 'context.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a></li>
+						</ul>
+						<ul class="actions-right">
+							<li><input type="submit" class="button" value="{{ 'context.edit'|trans({}, 'BatnaArchiBundle') }}" /></li>
+							</form>
+							<li>
+						        <form action="{{ path('ctxt_delete', { 'id': entity.id }) }}" method="post">
+						            {{ form_widget(delete_form) }}
+						            <input type="submit" class="button red" value="{{ 'context.delete'|trans({}, 'BatnaArchiBundle') }}" />
+						        </form>
+						    </li>
+						</ul>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

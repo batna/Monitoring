@@ -1,0 +1,30 @@
+host:
+    pattern:  /
+    defaults: { _controller: "BatnaArchiBundle:Host:index" }
+
+host_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Host:show" }
+
+host_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaArchiBundle:Host:new" }
+
+host_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaArchiBundle:Host:create" }
+    requirements: { _method: post }
+
+host_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Host:edit" }
+
+host_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Host:update" }
+    requirements: { _method: post }
+
+host_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Host:delete" }
+    requirements: { _method: post }

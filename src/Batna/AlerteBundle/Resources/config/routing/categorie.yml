@@ -1,0 +1,30 @@
+cat:
+    pattern:  /
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:index" }
+
+cat_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:show" }
+
+cat_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:new" }
+
+cat_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:create" }
+    requirements: { _method: post }
+
+cat_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:edit" }
+
+cat_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:update" }
+    requirements: { _method: post }
+
+cat_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaAlerteBundle:Categorie:delete" }
+    requirements: { _method: post }

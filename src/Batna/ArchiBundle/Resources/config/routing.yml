@@ -1,0 +1,15 @@
+BatnaArchiBundle_ctxt:
+        resource: "@BatnaArchiBundle/Resources/config/routing/contexte.yml"
+        prefix:   /ctxt
+
+BatnaArchiBundle_env:
+        resource: "@BatnaArchiBundle/Resources/config/routing/environnement.yml"
+        prefix:   /env
+
+BatnaArchiBundle_host:
+        resource: "@BatnaArchiBundle/Resources/config/routing/host.yml"
+        prefix:   /host
+
+BatnaArchiBundle_var:
+        resource: "@BatnaArchiBundle/Resources/config/routing/variable.yml"
+        prefix:   /var

@@ -1,0 +1,64 @@
+{% extends 'BatnaSiebelBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'ss.ssManagement'|trans([], 'BatnaSiebelBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'ss.ssView'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table>
+				    <tbody>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Name'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.name }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Description'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.description }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Fullname'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.fullName }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Enablestate'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.enableState }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Objectid'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.objectId }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Version'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.version }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right;">{{ 'ss.Eventlog'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.eventLog }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('ss') }}" class="button">{{ 'ss.backToTheList'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('ss_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" onClick="if(confirm('{{ 'ss.confirmDelete'|trans({}, 'BatnaSiebelBundle') }}')) return true; else return false;" value="{{ 'ss.delete'|trans({}, 'BatnaSiebelBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('ss_edit', { 'id': entity.id }) }}" class="button">{{ 'ss.edit'|trans({}, 'BatnaSiebelBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

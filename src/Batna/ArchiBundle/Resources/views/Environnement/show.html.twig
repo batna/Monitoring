@@ -1,0 +1,48 @@
+{% extends 'BatnaArchiBundle::layout.html.twig' %}
+
+{% block maintitle %}{{ 'env.envManagement'|trans([], 'BatnaArchiBundle') }}{% endblock %}
+
+{% block corps %}
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'env.envEdit'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<table style="margin:10px">
+				    <tbody>
+				        <tr>
+				            <th style="text-align:right">{{ 'env.shortName'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.shortName }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right">{{ 'env.longName'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.longName }}</td>
+				        </tr>
+				        <tr>
+				            <th style="text-align:right">{{ 'env.description'|trans([], 'BatnaArchiBundle') }}&nbsp;:&nbsp;</th>
+				            <td>{{ entity.description }}</td>
+				        </tr>
+				    </tbody>
+				</table>
+				<div class="block-actions">
+					<ul class="actions-left">
+						<li><a href="{{ path('env') }}" class="button">{{ 'env.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a></li>
+					</ul>
+					<ul class="actions-right">
+						 <li>
+					        <form action="{{ path('env_delete', { 'id': entity.id }) }}" method="post">
+					            {{ form_widget(delete_form) }}
+					            <input type="submit" class="button red" value="{{ 'env.delete'|trans({}, 'BatnaArchiBundle') }}" />
+					        </form>
+					    </li>
+						<li><a href="{{ path('env_edit', { 'id': entity.id }) }}" class="button">{{ 'env.edit'|trans({}, 'BatnaArchiBundle') }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

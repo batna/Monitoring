@@ -1,0 +1,39 @@
+ns:
+    pattern:  /
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:index" }
+
+ns_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:show" }
+
+ns_new:
+    pattern:  /new
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:new" }
+
+ns_create:
+    pattern:  /create
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:create" }
+    requirements: { _method: post }
+
+ns_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:edit" }
+
+ns_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:update" }
+    requirements: { _method: post }
+
+ns_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:delete" }
+    requirements: { _method: post }
+
+ns_remove_parameter:
+    pattern:  /{id}/param/delete
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:removeParameter" }
+    requirements: { _method: post }
+
+ns_add_parameter:
+    pattern:  /{id}/param/add
+    defaults: { _controller: "BatnaSiebelBundle:NamedSubsystem:addParameter" }

@@ -1,0 +1,32 @@
+{% extends 'BatnaArchiBundle::layout.html.twig' %}
+
+{%  block maintitle %}{{ 'env.envManagement'|trans([], 'BatnaArchiBundle') }}{% endblock %}
+
+{% block corps %}
+
+<div class="container_12">
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'env.newEnv'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				<form action="{{ path('env_create') }}" method="post" {{ form_enctype(form) }}>
+					<div style="margin:10px">
+					    {{ form_widget(form) }}
+					</div>    
+					<div class="block-actions">
+						<ul class="actions-left">
+							<li><a href="{{ path('env') }}" class="button">{{ 'env.backToTheList'|trans([], 'BatnaArchiBundle') }}</a></li>
+						</ul>
+						<ul class="actions-right">
+							<li><input type="submit" class="button" value="{{ 'env.create'|trans([], 'BatnaArchiBundle') }}" />
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
