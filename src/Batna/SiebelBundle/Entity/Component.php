@@ -62,6 +62,13 @@ class Component {
 	private $description;
 
 	/**
+	 * @var string $status
+	 *
+	 * @ORM\Column(name="status", type="string", length=255, nullable=true)
+	 */
+	private $status;
+
+	/**
 	 * @var string $componentType
 	 *
 	 * @ORM\Column(name="componentType", type="string", length=255, nullable=true)
@@ -148,9 +155,14 @@ class Component {
     /**
      * @var ComponentGroup $componentGroup
      *
-     * @ORM\ManyToOne(targetEntity="Batna\SiebelBundle\Entity\ComponentGroup")
+     * @ORM\ManyToOne(cascade={"persist"}, targetEntity="Batna\SiebelBundle\Entity\ComponentGroup")
      */
     private $componentGroup;
+    
+    public function __construct()
+    {
+    	$this->parameters = array();
+    }
 
 	/**
 	 * Get id
@@ -267,6 +279,24 @@ class Component {
 	 */
 	public function getDescription() {
 		return $this->description;
+	}
+
+	/**
+	 * Set status
+	 *
+	 * @param string $status
+	 */
+	public function setStatus($status) {
+		$this->status = $status;
+	}
+
+	/**
+	 * Get status
+	 *
+	 * @return string 
+	 */
+	public function getStatus() {
+		return $this->status;
 	}
 
 	/**
@@ -525,8 +555,9 @@ class Component {
 	 *
 	 * @param ComponentGroup $componentGroup
 	 */
-	public function setComponentGroup($componentGroup) {
+	public function setComponentGroup(ComponentGroup $componentGroup) {
 		$this->componentGroup = $componentGroup;
+		$this->componentGroup->addComponent($this);
 	}
 
 	/**

@@ -10,27 +10,25 @@
 			</div>
 			<form action="{{ path('user_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 			<div class="block-content">
-				
+				<div style="margin:10px">
 				    {{ form_widget(edit_form) }}
+				</div>
 				<div class="block-actions">
 					<ul class="actions-left">
 						<li><a href="{{ path('user') }}" class="button">{{ 'user.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>
 					</ul>
 					<ul class="actions-right">
+			            <li><input type="submit" class="button" value="{{ 'user.edit'|trans({}, 'BatnaUserBundle') }}" /></li>
+						</form>
 						<li>
 							<form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
 				            	{{ form_widget(delete_form) }}
-				            	<input type="submit" value="Delete" class="button red">
+				            	<input type="submit" value="{{ 'user.delete'|trans({}, 'BatnaUserBundle') }}" class="button red">
 				            </form>
-			            </li>
-			            <li>
-			            	<input type="submit" class="button" value="{{ 'user.edit'|trans({}, 'BatnaUserBundle') }}" />
 			            </li>
 					</ul>
 				</div>
 			</div>
-			
-				</form>
 		</div>
 	</div>
 </div>

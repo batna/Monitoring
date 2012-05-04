@@ -34,27 +34,27 @@ class UserController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $user = $em->getRepository('BatnaUserBundle:User')->find($id);
-        $groups = $em->getRepository('BatnaUserBundle:Group')->findAll();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	
+    	$user = $em->getRepository('BatnaUserBundle:User')->find($id);
+    	$entity = $em->getRepository('BatnaUserBundle:User')->find($id);
+    	$groups = $em->getRepository('BatnaUserBundle:Group')->findAll();
         $roles = $em->getRepository('BatnaUserBundle:Role')->findAll();
-        
-        if (!$user) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('BatnaUserBundle:User:show.html.twig', array(
-            'entity'      => $user,
-            'delete_form' => $deleteForm->createView(),
-            'groups'	  => $groups,
-            'roles'	  	  => $roles,
-        	'customGroupRoles'=>$this->getCustomGroupRoles($user),
-        	'customRoles' =>$this->getCustomRoles($user),
-
-        ));
+        //$diffusions = $user->getDiffusionLists();
+    	
+    	
+    	
+    	$deleteForm = $this->createDeleteForm($id);
+    	
+    	return $this->render('BatnaUserBundle:User:show.html.twig', array(
+    			'entity' => $entity,
+    			'groups' => $groups,
+            	'roles'	  	  => $roles,
+    			'delete_form' => $deleteForm->createView(),
+	        	'customGroupRoles'=>$this->getCustomGroupRoles($user),
+	        	'customRoles' =>$this->getCustomRoles($user),
+        		//'diffusions'  => $diffusions,
+    	));
     }
 
     /**

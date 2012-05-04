@@ -5,6 +5,8 @@ namespace Batna\UserBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller as Controller;
+
 /**
  * Batna\UserBundle\Entity\User
  *
@@ -98,5 +100,42 @@ class User extends BaseUser
     public function getSurname()
     {
         return $this->surname;
+    }
+    
+    /**
+     * Get Alertes
+     *
+     * @return array
+     */
+    public function getDiffusionLists()
+    {
+    	$ctrl = new Controller();
+    	$em = $ctrl->getDoctrine()->getEntityManager();
+    	
+    	$diffusions = $em->getRepository('BatnaAlerteBundle:Diffusion')->findAll();
+    	$groupeLists = array();
+    	$userLists = array();
+    	
+    	foreach($diffusions as $diffusion)
+    	{
+    		$difGroupes = $diffusion->getGroupes();
+    		foreach ($difGroupes as $difGroupe)
+    		{
+    			if($this->hasGroup($difGroupe))
+    			{
+    				$groupeLists[] = $diffusion;
+    			}
+    		}
+    		$difUsers = $diffusion->getUsers();
+    		foreach ($difUsers as $difUser)
+    		{
+    			if($this === $difUser)
+    			{
+    				$userLists[] = $diffusion;
+    			}
+    		}
+    	}
+    	
+    	return array_unique(array_merge($groupeLists, $userLists));
     }
 }

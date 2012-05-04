@@ -19,6 +19,10 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
         	new FOS\UserBundle\FOSUserBundle(),
             new Batna\UserBundle\BatnaUserBundle(),
+            new Batna\ArchiBundle\BatnaArchiBundle(),
+            new Batna\SiebelBundle\BatnaSiebelBundle(),
+            new Batna\AlerteBundle\BatnaAlerteBundle(),
+            new Batna\ToolsBundle\BatnaToolsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

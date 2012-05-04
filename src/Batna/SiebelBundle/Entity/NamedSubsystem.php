@@ -275,6 +275,7 @@ class NamedSubsystem
     public function setEnterprise($enterprise)
     {
         $this->enterprise = $enterprise;
+        $this->enterprise->addNamedSubsystem($this);
     }
 
     /**

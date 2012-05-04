@@ -2,9 +2,12 @@
 
 namespace Batna\SiebelBundle\Controller;
 
+use Batna\ToolsBundle\Entity\DocumentRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Batna\SiebelBundle\Entity\Gateway;
+use Batna\ToolsBundle\Entity\Document;
 use Batna\SiebelBundle\Form\GatewayType;
 
 /**
@@ -78,18 +81,36 @@ class GatewayController extends Controller
         $form    = $this->createForm(new GatewayType(), $entity);
         $form->bindRequest($request);
         
+                
         $file = $form['currentFile'];
+        
+        //var_dump($file);
         $dir = '/home/sentenza/workspace/Monitoring/web/upload/archi/gateways/';
          
         $new_filename = 'siebns'.$entity->getName().'.'.date('Ymd', filemtime($file->getData())).'.'.md5($file->getData()).'.dat';
         
-        $file->getData()->move($dir, $new_filename);
+        //echo (is_file($file->getData()))?'Le fichier est réel : '.$dir.$new_filename:'Le fichier est faux : '.$dir.$new_filename;
         
-        $entity->setCurrentFile($dir.$new_filename);
+        //echo $dir.$new_filename;
+        
         
         if ($form->isValid()) {
-        	        	
+        	echo '*** on est valide ***';
+        	
+        	$form['currentFile']->getData()->move($dir, $new_filename);
+        	
+        	//echo '*** '.$form['currentFile']->getClientOriginalName().' ***';
+        	
+        	
+        	$doc = new Document();
+        	$doc->setName($new_filename);
+        	$doc->setClientFileName($file->getName());
+        	$doc->setPath($dir);
+        	
+        	$entity->setCurrentFile($dir.$new_filename);
             $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($doc);
+            $entity->setCurrentFile($doc);
             $em->persist($entity);
             $em->flush();
 

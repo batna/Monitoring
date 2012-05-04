@@ -1,5 +1,4 @@
 <?php
-
 namespace Batna\SiebelBundle\Entity;
 
 class Block
@@ -31,19 +30,20 @@ class Block
 	{
 		$this->content = explode("\n", str_replace(array("\t", '    '), '', $content));
 		$this->setTitre();
-		$this->setValue();
-		if($this->hasValue()){$this->analyseTitre();} // la fonction analyseTitre n'est pas faite pour être appelée dans une autres condition que celle-ci
+		$this->analyseTitre();
 	}
 	
 	private function setValue()
-	{
+	{		
 		foreach($this->content as $numero => $ligne)
 		{
 			if(strpos($ligne, '=')!==false)
 			{
 				list($key, $value) = explode('=', $ligne);
 				if($key=='Value')
-					$this->value = str_replace('"', '', substr($value, 0, -1));
+				{
+					$this->value = str_replace(array('"', "\n"), '', substr($value, 0));
+				}
 			}
 			//elseif{}  // ajouter les autres parametres qu'on veux recuperer, pour l'instant que Value est utile
 			elseif($numero==0){// on est sur la ligne de titre, ne rien faire ici
@@ -52,16 +52,15 @@ class Block
 				unset($this->content[$numero]);
 			}
 		}
+		//echo $this->value.'<br />';
 	}
 	
-	//
-	// ATTENTION : Cette fonction n'est à appeler que lorsque la variable $value est remplie, c'est à dire que le block a une vraie utilité et n'est pas juste un block de transition vers un block plus important. Il faut donc $this->hasValue()==true
-	//
 	private function analyseTitre()
 	{
 		
-		$items = explode('/', str_replace(array('[/', '[', ']'), '', $this->titre));
+		$items = explode('/', str_replace(array('[/', ']'), '', $this->titre));
 		
+		//$rendu = print_r($items);
 		
 		if($items[0]=='enterprises') //enterprises
 		{
@@ -70,10 +69,9 @@ class Block
 				if(isset($items[2]))
 				{
 					$this->ES = $items[1];
-					if($items[2] = 'version') //enterprises/<enterprise>/version
+					if($items[2] == 'version') //enterprises/<enterprise>/version
 					{
-						$this->hauteur = 'es/version';
-						$this->variable = 'VersionString';
+						$this->setHV2('/es/version', 'VersionString');
 					}
 					elseif($items[2]=='named subsystems') //enterprises/<enterprise>/named subsystem
 					{
@@ -86,16 +84,14 @@ class Block
 								{
 									if(isset($items[5]))
 									{
-										$this->hauteur = '/es/ns/def';
-										$this->variable = $items[5];
+										$this->setHV2('/es/ns/def', $items[5]);
 									}
 								}
 								elseif($items[4]=='parameters') //enterprises/<enterprise>/named subsystem/<named subsystem>/parameters
 								{
 									if(isset($items[5]))
 									{
-										$this->hauteur = '/es/ns/param';
-										$this->variable = $items[5];
+										$this->setHV2('/es/ns/param', $items[5]);
 									}
 								}
 							}
@@ -105,16 +101,14 @@ class Block
 					{
 						if(isset($items[3])) //enterprises/<enterprise>/component list/<component>
 						{
-							$this->hauteur = '/es/cl/cp';
-							$this->variable = $items[3];
+							$this->setHV2('/es/cl/cp', $items[3]);
 						}
 					}
 					elseif($items[2]=='definition') //enterprises/<enterprise>/definition
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/es/def';
-							$this->variable = $items[3];
+							$this->setHV2('/es/def', $items[3]);
 						}
 					}
 					elseif($items[2]=='servers') //enterprises/<enterprise>/servers
@@ -128,22 +122,19 @@ class Block
 								{
 									if(isset($items[5]))//enterprises/<enterprise>/servers/<server>/version/...
 									{
-										$this->hauteur = '/es/ss/ver';
-										$this->variable = $items[5];
+										$this->setHV2('/es/ss/ver', $items[5]);
 									}
 								}
 								elseif($items[4]=='definition')//enterprises/<enterprise>/servers/<server>/definition
 								{
 									if(isset($items[5]))//enterprises/<enterprise>/servers/<server>/definition/...
 									{
-										$this->hauteur = '/es/ss/def';
-										$this->variable = $items[5];
+										$this->setHV2('/es/ss/def', $items[5]);
 									}
 								}
 								elseif($items[4]=='events' && isset($items[7]) && $items[7] = 'EventLog')//enterprises/<enterprise>/servers/<server>/events/ServerLog/handlers/EventLog
 								{
-									$this->hauteur = 'es/ss/evt';
-									$this->variable = 'EventLog';
+									$this->setHV2('es/ss/evt', 'EventLog');
 								}
 								elseif($items[4]=='component groups')//enterprises/<enterprise>/servers/<server>/component groups
 								{
@@ -156,8 +147,7 @@ class Block
 											{
 												if(isset($items[7]))
 												{
-													$this->hauteur = 'es/ss/cg/def';
-													$this->variable = $items[7];
+													$this->setHV2('/es/ss/cg/def', $items[7]);
 												}
 											}
 											elseif($items[6]=='components')//enterprises/<enterprise>/servers/<server>/component groups/<component group>/components
@@ -171,28 +161,25 @@ class Block
 														{
 															if(isset($items[9]))//enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/definition/...
 															{
-																$this->hauteur = '/es/ss/cg/cp/def';
-																$this->variable = $items[9];
+																$this->setHV2('/es/ss/cg/cp/def', $items[9]);
 															}
 														}	
-														elseif($items[8]=='events')//enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/events
+														/*elseif($items[8]=='events')//enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/events
 														{
-															// NADA TO DO,  on n'enregistre pas c'est du bruit
-														}
-														elseif($items[8]=='connect string')//enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/connect strings/connect
+															// NADA TODO,  on n'enregistre pas c'est du bruit
+														}/**/
+														elseif($items[8]=='connect strings')//enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/connect strings/connect
 														{
 															if(isset($items[9]) && $items[9]=='service')
 															{
-																$this->hauteur = '/es/ss/cg/cp/cs';
-																$this->variable = 'service';
+																$this->setHV2('/es/ss/cg/cp/cs', 'service');
 															}
 														}
 														elseif($items[8]=='parameters') //enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/parameters
 														{
 															if(isset($items[9])) //enterprises/<enterprise>/servers/<server>/component groups/<component group>/components/<component>/parameters/param
 															{
-																$this->hauteur = '/es/ss/cg/cp/param';
-																$this->variable = $items[9];
+																$this->setHV2('/es/ss/cg/cp/param', $items[9]);
 															}
 														}
 													}
@@ -205,16 +192,14 @@ class Block
 								{
 									if(isset($items[5]))
 									{
-										$this->hauteur = '/es/ss/param';
-										$this->variable = $items[5];
+										$this->setHV2('/es/ss/param', $items[5]);
 									}
 								}
 								elseif($items[4]=='attributes') //enterprises/<enterprise>/servers/<server>/attributes
 								{
 									if(isset($items[5]))
 									{
-										$this->hauteur = '/es/ss/attr';
-										$this->variable = $items[5];
+										$this->setHV2('/es/ss/attr', $items[5]);
 									}
 								}
 							}
@@ -231,8 +216,7 @@ class Block
 								{
 									if(isset($items[5]))
 									{
-										$this->hauteur = '/es/cg/def';
-										$this->variable = $items[5];
+										$this->setHV2('/es/cg/def', $items[5]);
 									}
 								}
 								elseif($items[4]=='components') //enterprises/<enterprise>/component groups/<component group>/components
@@ -246,22 +230,19 @@ class Block
 											{
 												if(isset($items[7]))
 												{
-													$this->hauteur = '/es/cg/cp/def';
-													$this->variable = $items[7];
+													$this->setHV2('/es/cg/cp/def', $items[7]);
 												}
 											}elseif($items[6]=='parameters') //enterprises/<enterprise>/component groups/<component group>/components/<component>/parameters
 											{
 												if(isset($items[7]))
 												{
-													$this->hauteur = '/es/cg/cp/param';
-													$this->variable = $items[7];
+													$this->setHV2('/es/cg/cp/param', $items[7]);
 												}
 											}elseif($items[6]=='fixed parameters') //enterprises/<enterprise>/component groups/<component group>/components/<component>/fixed parameters
 											{
 												if(isset($items[7]))
 												{
-													$this->hauteur = '/es/cg/cp/fxparam';
-													$this->variable = $items[7];
+													$this->setHV2('/es/cg/cp/fxparam', $items[7]);
 												}
 											}
 										}
@@ -274,24 +255,21 @@ class Block
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/es/param';
-							$this->variable = $items[3];
+							$this->setHV2('/es/param', $items[3]);
 						}
 					}
 					elseif($items[2]=='attributes') //enterprises/<enterprise>/attributes
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/es/attr';
-							$this->variable = $items[3];
+							$this->setHV2('/es/attr', $items[3]);
 						}
 					}
 					elseif($items[2]=='sequences') //enterprises/<enterprise>/sequences
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/es/seq';
-							$this->variable = $items[3];
+							$this->setHV2('/es/seq', $items[3]);
 						}
 					}
 				}
@@ -308,27 +286,36 @@ class Block
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/gtw/ver';
-							$this->variable = $items[3];
+							$this->setHV2('/gtw/ver', $items[3]);
 						}
 					}elseif($items[2]=='definition') //gateways/<gateway>/definition
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/gtw/def';
-							$this->variable = $items[3];
+							$this->setHV2('/gtw/def', $items[3]);
 						}
 					}elseif($items[2]=='attributes') //gateways/<gateway>/attributes
 					{
 						if(isset($items[3]))
 						{
-							$this->hauteur = '/gtw/attr';
-							$this->variable = $items[3];
+							$this->setHV2('/gtw/attr', $items[3]);
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Set HV2 (Hauteur, Variable, Valeur)
+	 * @param string $hauteur
+	 * @param string $variable
+	 */
+	private function setHV2($hauteur, $variable)
+	{
+		$this->hauteur = $hauteur;
+		$this->variable = $variable;
+		$this->setValue();
 	}
 		
 	private function setTitre()
@@ -358,7 +345,7 @@ class Block
 	
 	public function getVariable()
 	{
-		return substr($this->variable, 0, -1);
+		return $this->variable;
 	}
 	
 	public function getGTW()

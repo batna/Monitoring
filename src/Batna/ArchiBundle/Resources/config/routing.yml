@@ -9,7 +9,3 @@ BatnaArchiBundle_env:
 BatnaArchiBundle_host:
         resource: "@BatnaArchiBundle/Resources/config/routing/host.yml"
         prefix:   /host
-
-BatnaArchiBundle_var:
-        resource: "@BatnaArchiBundle/Resources/config/routing/variable.yml"
-        prefix:   /var

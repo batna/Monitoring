@@ -59,7 +59,7 @@
 				        {% if entity.currentFile is not empty %}
 				        <tr>
 				            <th style="text-align:right;">{{ 'gtw.currentFile'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
-				            <td>{{ entity.currentFile }}</td>
+				            <td>{{ entity.currentFile.name }}</td>
 				        </tr>
 				        {% endif %}
 				    </tbody>
@@ -78,6 +78,31 @@
 						<li><a href="{{ path('gtw_edit', { 'id': entity.id }) }}" class="button">{{ 'gtw.edit'|trans({}, 'BatnaSiebelBundle') }}</a></li>
 					</ul>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_6">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'gtw.listComponents'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entity.enterprises is empty %}
+				<p>Aucun enterprise n'est définit pour le moment</p>
+			{% else %}
+				<table style="margin:10px">
+				<tr>
+					<th>ID</th>
+					<th>Enterprise</th>
+				</tr>
+				{% for enterprise in entity.enterprises %}
+					<tr>
+						<td>{{ enterprise.0 }}</td>
+						<td>{{ enterprise.1 }}</td>
+					</tr>
+				{% endfor %}
+				</table>
+			{% endif %}
 			</div>
 		</div>
 	</div>

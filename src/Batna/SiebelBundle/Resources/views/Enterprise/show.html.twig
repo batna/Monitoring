@@ -4,7 +4,7 @@
 
 {% block corps %}
 <div class="container_12">
-	<div class="grid_6">
+	<div class="grid_4">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'es.esView'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
@@ -42,11 +42,11 @@
 				        </tr>
 				        <tr>
 				            <th style="text-align:right;">{{ 'es.Attrattrdatabaseplatform'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
-				            <td>{{ entity.attrDatabasePlatform }}</td>
+				            <td>{{ entity.databasePlatform }}</td>
 				        </tr>
 				        <tr>
 				            <th style="text-align:right;">{{ 'es.Attrusemsstored'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
-				            <td>{{ entity.attrUseMSStored }}</td>
+				            <td>{{ entity.useMSStored }}</td>
 				        </tr>
 				        <tr>
 				            <th style="text-align:right;">{{ 'es.Attrdescription'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
@@ -54,7 +54,7 @@
 				        </tr>
 				        <tr>
 				            <th style="text-align:right;">{{ 'es.Attrdatabaseconstr'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
-				            <td>{{ entity.attrDatabaseConStr }}</td>
+				            <td>{{ entity.databaseConStr }}</td>
 				        </tr>
 				        <tr>
 				            <th style="text-align:right;">{{ 'es.Serversequence'|trans({}, 'BatnaSiebelBundle') }}&nbsp;:&nbsp;</th>
@@ -88,6 +88,81 @@
 						<li><a href="{{ path('es_edit', { 'id': entity.id }) }}" class="button">{{ 'es.edit'|trans({}, 'BatnaSiebelBundle') }}</a></li>
 					</ul>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_4">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'es.listParams'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entity.parameters is empty %}
+				<p>Aucun paramètre n'est définit pour le moment</p>
+			{% else %}
+				<table style="margin:10px">
+				<tr>
+					<td></td>
+					<th>Paramètre</th>
+					<th>Valeur</th>
+				</tr>
+				{% for parameter in entity.parameters %}
+					<tr>
+						<td>
+							<form action="{{ path('es_remove_parameter', {'id': entity.id }) }}" method="post">
+								<input type="hidden" name="es" value="{{ entity.id }}" />
+								<input type="hidden" name="param" value="{{ parameter.0 }}" />
+								<input type="hidden" name="value" value="{{ parameter.1 }}" />
+								<input type=submit class="button red" value="{{ 'es.delete'|trans({}, 'BatnaSiebelBundle') }}" />
+							</form>
+						</td>
+						<td>{{ parameter.0 }}</td>
+						<td>{{ parameter.1 }}</td>
+					</tr>
+				{% endfor %}
+				</table>
+			{% endif %}
+				<fieldset>
+					<label>Nouveau paramètre pour ce composant</label>
+					<form action="{{ path('es_add_parameter', {'id': entity.id }) }}" method="post">
+						<table>
+							<tr>
+								<td>Paramètre : </td>
+								<td>Valeur : </td>
+							</tr>
+							<tr>
+								<td><input type="text" name="parameter" value="" /></td>
+								<td><input type="text" name="value" value="" /></td>
+								<td><input type="hidden" name="id" value="{{ entity.id }}" /><input type="submit" class="button" value="{{ 'es.addParameterSubmit'|trans({}, 'BatnaSiebelBundle') }}" /></td>
+							</tr>
+						</table>
+						</form>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div class="grid_4">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'es.listComponents'|trans({}, 'BatnaSiebelBundle') }}</h1><span></span>
+			</div>
+			<div class="block-content">
+			{% if entity.components is empty %}
+				<p>Aucun composant n'est définit pour le moment</p>
+			{% else %}
+				<table style="margin:10px">
+				<tr>
+					<th>Nom</th>
+					<th>Valeur</th>
+				</tr>
+				{% for component in entity.components %}
+					<tr>
+						<td>{{ component.0 }}</td>
+						<td>{{ component.1 }}</td>
+					</tr>
+				{% endfor %}
+				</table>
+			{% endif %}
 			</div>
 		</div>
 	</div>

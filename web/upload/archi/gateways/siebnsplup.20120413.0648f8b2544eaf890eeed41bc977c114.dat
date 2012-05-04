@@ -1,0 +1,130 @@
+debut pour tous enterprise
+	recuperation de nom de l'enterprise
+	debut pour tous named subsystems
+		recuperation du nom du named subsystem
+		debut definition
+			recuperation de la variable "name"
+			recuperation de la variable "full name"
+			recuperation de la variable "description"
+			recuperation de la variable "enable state"
+			recuperation de la variable "subsystem name"
+			recuperation de la variable "object id"
+		fin definition
+		debut pour tous parametres
+			recuperation du couple parametre=valeur
+		fin parametres
+	fin named subsystem
+	debut pour tous component list
+		recuperation du couple component=valeur
+	fin component list
+	debut definition
+		recuperation de la variable "name"
+		recuperation de la variable "full name"
+		recuperation de la variable "descriptio"
+		recuperation de la variable "signature"
+		recuperation de la variable "enable state"
+		recuperation de la variable "object id"
+	fin definition
+	debut pour tous servers
+		recuperation du nom du server
+		debut version
+			recuperation de la variable "VersionString"
+		fin version
+		debut definition
+			recuperation de la variable "name"
+			recuperation de la variable "description"
+			recuperation de la variable "full name"
+			recuperation de la variable "enable state"
+			recuperation de la variable "object id"
+		fin definition
+		debut event
+			recuperation de la variable "EventLog"
+		fin event
+		debut pour tous component groups
+			recuperation du nom du component group
+			debut definition
+				recuperation de la variable "enable state"
+				recuperation de la variable "status"
+			fin definition
+			debut components
+				recuperation du nom du component
+				debut definition
+					recuperation de la variable "start mode"
+					recuperation de la variable "enable state"
+					recuperation de la variable "status"
+				fin definition
+			fin component
+		fin component group
+		debut pour tous parametres
+			recuperation du couple parametre=valeur
+		fin parametres
+		debut pour tous attributes
+			recuperation du couple attribute=valeur
+		fin attributes
+	fin servers
+	debut pour tous parametres
+		recuperation du couple parametre=valeur
+	fin parametres
+	debut pour tous component groups
+		recuperation du nom du component group
+		debut definition
+			recuperation de la variable "name"
+			recuperation de la variable "full name"
+			recuperation de la variable "definition"
+			recuperation de la variable "enable state"
+			recuperation de la variable "object id"
+		fin definition
+		debut components
+			recuperation du nom du component
+			debut definition
+				recuperation de la variable "name"
+				recuperation de la variable "run mode"
+				recuperation de la variable "incarnation number"
+				recuperation de la variable "full name"
+				recuperation de la variable "description"
+				recuperation de la variable "component type"
+				recuperation de la variable "enable state"
+				recuperation de la variable "object id"
+				recuperation de la variable "write flag"
+			fin definition
+			debut fixed parameters
+				recuperation de la variable "ConfigFile"
+				recuperation de la variable "ServiceName"
+				recuperation de la variable "DataSource"
+				recuperation de la variable "NamedDataSource"
+			fin fixed parameters
+			debut pour tous parametres
+				recuperation du couple parametre=valeur
+			fin parametres
+		fin component
+	fin component group
+	debut attributes
+		recuperation de la variable "DatabasePlatform]Value="OracleCBO"
+		recuperation de la variable "UseMSStored]Value=false
+		recuperation de la variable "Description]Value="QNS_PROD Enterprise"
+		recuperation de la variable "DatabaseConnStr]Value="SIEBELPR_APP"
+	fin attributes
+	debut sequences
+		recuperation de la variable "server sequence]Value=6
+		recuperation de la variable "component group sequence]Value=37
+		recuperation de la variable "component sequence]Value=181
+		recuperation de la variable "event handler sequence]Value=0
+		recuperation de la variable "/named subsystem sequence]Value=32
+	fin sequences
+fin enterprise
+debut gateway
+	debut version
+		recuperation de la variable "VersionString"
+	fin version
+	debut definition
+		recuperation de la variable "name"
+		recuperation de la variable "description"
+		recuperation de la variable "full name"
+		recuperation de la variable "enable state"
+		recuperation de la variable "object id"
+	fin definition
+	debut attributes
+		recuperation de la variable "CreateDefault"
+		recuperation de la variable "UseDefault"
+	fin attributes
+fin gateway

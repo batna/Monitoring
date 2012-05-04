@@ -4,10 +4,10 @@
 
 {% block corps %}
 <div class="container_12">
-	<div class="grid_6">
+	<div class="grid_12">
 		<div class="block-border">
 			<div class="block-header">
-				<h1>{{ 'env.envEdit'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
+				<h1>{{ 'env.envConsult'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
 			</div>
 			<div class="block-content">
 				<table style="margin:10px">
@@ -31,18 +31,47 @@
 						<li><a href="{{ path('env') }}" class="button">{{ 'env.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a></li>
 					</ul>
 					<ul class="actions-right">
+						<li><a href="{{ path('env_edit', { 'id': entity.id }) }}" class="button">{{ 'env.edit'|trans({}, 'BatnaArchiBundle') }}</a></li>
 						 <li>
 					        <form action="{{ path('env_delete', { 'id': entity.id }) }}" method="post">
 					            {{ form_widget(delete_form) }}
 					            <input type="submit" class="button red" value="{{ 'env.delete'|trans({}, 'BatnaArchiBundle') }}" />
 					        </form>
 					    </li>
-						<li><a href="{{ path('env_edit', { 'id': entity.id }) }}" class="button">{{ 'env.edit'|trans({}, 'BatnaArchiBundle') }}</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
+	{% block valeursVar %}
+	<div class="grid_12">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'var.consultVars'|trans({}, 'BatnaArchiBundle') }} {{ entity.shortName }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				{% if variables is empty %}
+					<p>{{ 'env.noVariables'|trans([], 'BatnaArchiBundle') }}</p>
+				{% else %}
+				<table>
+					<tr>
+						<th>Actions</th>
+						<th>Variable</th>
+						<th>Valeur</th>
+					</tr>
+					{% for variable in variables %}
+					<tr>
+						<td><a href="{{ path('varValEnv_edit', { 'env': entity.id, 'var': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a></td>
+				        <td>{{ variable.name }}</td>
+						<td>{{ variable.value }}</td>
+					</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endblock %}
 </div>
 
 {% endblock %}

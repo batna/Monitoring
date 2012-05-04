@@ -1,10 +1,10 @@
 {% extends 'BatnaUserBundle::layout.html.twig' %}
 
-{% block maintitle %}Gestion des utilisateurs{% endblock %}
+{% block maintitle %}{{ 'context.contextManagement'|trans([], 'BatnaArchiBundle') }}{% endblock %}
 
 {% block corps %}
 <div class="container_12">
-	<div class="grid_6">
+	<div class="grid_9">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'user.userList'|trans({}, 'BatnaUserBundle') }}</h1><span></span>

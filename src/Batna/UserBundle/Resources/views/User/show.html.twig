@@ -8,22 +8,22 @@
 				<h1>{{ 'user.userView'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
 			</div>
 			<div class="block-content">
-				<table class="table">
+				<table style="margin:10px;">
 				    <tbody>
 				        <tr>
-				            <th>Username</th>
+				            <th style="text-align:right;">Username : </th>
 				            <td>{{ entity.username }}</td>
 				        </tr>
 				        <tr>
-				            <th>Email</th>
+				            <th style="text-align:right;">Email : </th>
 				            <td>{{ entity.email }}</td>
 				        </tr>
 				        <tr>
-				            <th>Name</th>
+				            <th style="text-align:right;">Name : </th>
 				            <td>{{ entity.name }}</td>
 				        </tr>
 				        <tr>
-				            <th>Surname</th>
+				            <th style="text-align:right;">Surname : </th>
 				            <td>{{ entity.surname }}</td>
 				        </tr>
 				    </tbody>
@@ -53,7 +53,7 @@
 				<h1>{{ 'user.listGroups'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
 			</div>
 				<div class="block-content">
-					<table>
+					<table style="margin:10px">
 					{% for group in entity.groups %}
 						<tr>
 							<td>
@@ -93,7 +93,7 @@
 				<h1>{{ 'user.listRoles'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
 			</div>
 				<div class="block-content">
-					<table>
+					<table style="margin:10px">
 					{% for role in customGroupRoles %}
 						<tr>
 							<td>

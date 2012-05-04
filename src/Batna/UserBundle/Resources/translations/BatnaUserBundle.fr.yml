@@ -17,6 +17,21 @@ dashboard:
   gateway: Passerelle
   enterpriseServer: Serveur d'entreprise
   siebelServer: Serveur Siebel
+  contextes: Contextes
+  environnements: Environnements
+  hosts: Machines
+  gateways: Gateways
+  enterprises: Enterprises
+  servers: Servers
+  namedSubsystems: Sous systèmes nommés
+  categories: Catégories
+  seuils: Seuils
+  alertes: Alertes
+  diffusionList: Listes de diffusion
+  components: Composants
+  componentGroups: Listes de composants
+  namedSubsystems: Sous systèmes nommés
+  
 user:
   userList: Liste des utilisateurs
   Actions: Action
@@ -39,7 +54,6 @@ user:
   userView: Vue d'un utilisateur
   userEdit: Modification d'un utilisateur
   edit: Modifier
-  delete: Supprimer l'utilisateur
   listGroups: Groupes de l'utilisateur
   listRoles: Rôles de l'utilisateur
   addRoleSubmit: Ajouter le rôle
@@ -56,3 +70,4 @@ group:
   delete: Supprimer
   addRoleSubmit: Ajouter le rôle
   listRoles: Liste des rôles du groupe
+  diffusionLists: Liste de diffusion d'alertes auxquelles l'utilisateur est abonné

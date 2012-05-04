@@ -10,10 +10,10 @@
 				<h1>{{ 'group.groupList'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
 			</div>
 			<div class="block-content">
-				<table class="table">
+				<table style="margin:10px">
 					<tr>
 						<td>
-							{{ 'group.show.name'|trans([], 'FOSUserBundle') }} :
+							{{ 'group.show.name'|trans([], 'FOSUserBundle') }} : 
 						</td>
 						<td>
 							{{ group.getName() }}
@@ -25,13 +25,13 @@
 						<li><a href="{{ path('group') }}" class="button">{{ 'group.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>
 					</ul>
 					<ul class="actions-right">
-						<li>
-							<form action="{{ path('group_delete', { 'id': group.id }) }}" method="get">
-				            	<input type="submit" value="{{ 'group.delete'|trans({}, 'BatnaUserBundle') }}" class="button red">
-				            </form>
-			            </li>
 			            <li>
 			            	<a href="{{ path('group_edit', { 'id': group.id }) }}" class="button">{{ 'group.edit'|trans({}, 'BatnaUserBundle') }}</a>
+			            </li>
+						<li>
+							<form action="{{ path('group_delete', { 'id': group.id }) }}" method="post">
+				            	<input type="submit" value="{{ 'group.delete'|trans({}, 'BatnaUserBundle') }}" class="button red">
+				            </form>
 			            </li>
 					</ul>
 				</div>
@@ -44,16 +44,8 @@
 				<h1>{{ 'group.listRoles'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
 			</div>
 				<div class="block-content">
-					<table>
-					{% for role in customGroupRoles %}
-						<tr>
-							<td>
-								<a href="#" class="button">Hérité</a>
-							</td>
-							<td>{{ role }}</td>
-						</tr>
-					{% endfor %}
-					{% for role in customRoles %}
+					<table style="margin:10px">
+					{% for role in group.roles %}
 						<tr>
 							<td>
 								{% if role != 'ROLE_USER' %}

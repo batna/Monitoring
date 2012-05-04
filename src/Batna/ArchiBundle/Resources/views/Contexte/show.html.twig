@@ -4,7 +4,7 @@
 
 {% block corps %}
 <div class="container_12">
-	<div class="grid_6">
+	<div class="grid_12">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'context.contextConsult'|trans({}, 'BatnaArchiBundle') }}</h1><span></span>
@@ -35,6 +35,35 @@
 			</div>
 		</div>
 	</div>
+	{% block valeursVar %}
+	<div class="grid_12">
+		<div class="block-border">
+			<div class="block-header">
+				<h1>{{ 'var.consultVars'|trans({}, 'BatnaArchiBundle') }} {{ entity.name }}</h1><span></span>
+			</div>
+			<div class="block-content">
+				{% if variables is empty %}
+					<p>{{ 'context.noVariables'|trans([], 'BatnaArchiBundle') }}</p>
+				{% else %}
+				<table>
+					<tr>
+						<th>Actions</th>
+						<th>Variable</th>
+						<th>Valeur</th>
+					</tr>
+					{% for variable in variables %}
+					<tr>
+						<td><a href="{{ path('varValCon_edit', { 'con': entity.id, 'var': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a></td>
+				        <td>{{ variable.name }}</td>
+						<td>{{ variable.value }}</td>
+					</tr>
+					{% endfor %}
+					</table>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% endblock %}
 </div>
-
+plop
 {%  endblock %}

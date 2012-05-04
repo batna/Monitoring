@@ -5,15 +5,14 @@
 {% block corps %}
 <div class="container_12">
 	<div class="grid_6">
-		<div class="block-border">
-			<div class="block-header">
-				<h1>{{ 'group.groupNew'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
-			</div>
-			<form action="{{ path('group_create') }}" {{ form_enctype(form) }} method="POST" class="group_new">
+		<form action="{{ path('group_create') }}" {{ form_enctype(form) }} method="POST" class="group_new">
+			<div class="block-border">
+				<div class="block-header">
+					<h1>{{ 'group.groupNew'|trans({}, 'BatnaUserBundle') }}</h1><span></span>
+				</div>
 				<div class="block-content">
+					<div style="margin:10px;">
 				    {{ form_widget(form) }}
-				    <div>
-				        
 				    </div>
 					<div class="block-actions">
 						<ul class="actions-left">
@@ -24,8 +23,8 @@
 						</ul>
 					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 </div>
 {% endblock %}

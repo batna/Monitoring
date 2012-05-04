@@ -1,0 +1,75 @@
+Siebel Name Server Backing File
+8.0.0.11 [20440] ENU
+1.2
+RhGzAAAAAAA=             
+
+[/]
+	Persistence=partial
+	Type=empty
+
+[/enterprises]
+	Type=empty
+
+[/enterprises/IVS_PROD/sequences/server sequence]
+	Persistence=full
+	Type=sequence
+	Value=4
+
+[/gateways]
+	Type=empty
+
+[/gateways/default]
+	Type=empty
+
+[/gateways/default/version]
+	Type=empty
+
+[/gateways/default/version/VersionString]
+	Type=string
+	Value="8.0 [20405] FRA"
+	Length=30
+
+[/gateways/default/definition]
+	Type=empty
+
+[/gateways/default/definition/name]
+	Persistence=full
+	Type=string
+	Value="default"
+	Length=14
+
+[/gateways/default/definition/description]
+	Persistence=full
+	Type=string
+	Value="Siebel Gateway Server"
+	Length=42
+
+[/gateways/default/definition/full name]
+	Persistence=full
+	Type=string
+	Value="Siebel Gateway"
+	Length=28
+
+[/gateways/default/definition/enable state]
+	Persistence=full
+	Type=string
+	Value="enabled"
+	Length=14
+
+[/gateways/default/definition/object id]
+	Persistence=full
+	Type=integer
+	Value=0
+
+[/gateways/default/attributes]
+	Type=empty
+
+[/gateways/default/attributes/CreateDefault]
+	Type=string
+	Value="SBA_80"
+	Length=12
+
+[/gateways/default/attributes/UseDefault]
+	Type=string
+	Value="SBA_80"
+	Length=12

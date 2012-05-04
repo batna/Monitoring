@@ -4,18 +4,9 @@
 
 {% block corps %}
 
+
 <div class="container_12">
 	<div class="grid_12">
-		<div class="block-border">
-			<div class="block-content">
-				<p><em>INFO :</em> Souvent confondus avec un environnement, un contexte est ce qui encapsule un environnement. Les contextes permettent de connaître le rôle d'un environnement et de porter des variables qui lui sont propres. Les contextes les plus utilisés sont : développement, intégration, recette, préproduction et production, mais il est tout à fait possible d'en imaginer d'autres tels que non regréssion, montée en charge, ...</p>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="clear"></div>
-<div class="container_12">
-	<div class="grid_6">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'context.contextList'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
@@ -35,10 +26,9 @@
 				    {% for entity in entities %}
 				        <tr>
 				            <td>
-				            	<a href="{{ path('ctxt_show', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
-				                <a href="{{ path('ctxt_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				            	<a href="{{ path('ctxt_edit', { 'id': entity.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
 			            	</td>
-				            <td>{{ entity.name }}</td>
+				            <td><a href="{{ path('ctxt_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
 				        </tr>
 				    {% endfor %}
 				    </tbody>
@@ -52,8 +42,11 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="clear"></div>
+<div class="container_12">
 	{% block variables %}
-	<div class="grid_6">
+	<div class="grid_12">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'var.contextVarList'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
@@ -72,11 +65,8 @@
 				    <tbody>
 				    {% for variable in variables %}
 				        <tr>
-				            <td>
-				            	<a href="{{ path('varCon_show', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
-				                <a href="{{ path('varCon_edit', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
-				          	</td>
-				            <td>{{ variable.name }}</td>
+				            <td><a href="{{ path('varCon_edit', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a></td>
+				            <td><a href="{{ path('varCon_show', { 'id': variable.id }) }}">{{ variable.name }}</a></td>
 				        </tr>
 				    {% endfor %}
 				    </tbody>

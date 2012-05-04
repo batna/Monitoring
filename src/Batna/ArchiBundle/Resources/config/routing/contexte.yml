@@ -28,3 +28,48 @@ ctxt_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "BatnaArchiBundle:Contexte:delete" }
     requirements: { _method: post }
+
+varCon:
+    pattern:  /var/
+    defaults: { _controller: "BatnaArchiBundle:Variable:indexCon" }
+
+varCon_show:
+    pattern:  /var/{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Variable:showCon" }
+
+varCon_new:
+    pattern:  /var/new
+    defaults: { _controller: "BatnaArchiBundle:Variable:newCon" }
+
+varCon_create:
+    pattern:  /var/create
+    defaults: { _controller: "BatnaArchiBundle:Variable:createCon" }
+    requirements: { _method: post }
+
+varCon_edit:
+    pattern:  /var/{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Variable:editCon" }
+
+varCon_update:
+    pattern:  /var/{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Variable:updateCon" }
+    requirements: { _method: post }
+
+varCon_delete:
+    pattern:  /var/{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Variable:deleteCon" }
+    requirements: { _method: post }
+
+varValCon_edit:
+    pattern:  /{con}/var/{var}/edit
+    defaults: { _controller: "BatnaArchiBundle:Variable:editValCon" }
+
+varValCon_update:
+    pattern:  /{con}/var/{var}/update
+    defaults: { _controller: "BatnaArchiBundle:Variable:updateValCon" }
+    requirements: { _method: post }
+
+varValCon_delete:
+    pattern:  /{con}/var/{var}/delete
+    defaults: { _controller: "BatnaArchiBundle:Variable:deleteValCon" }
+    requirements: { _method: post }

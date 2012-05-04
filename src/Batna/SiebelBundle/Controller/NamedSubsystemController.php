@@ -20,9 +20,9 @@ class NamedSubsystemController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-
+		echo 'tvb1';
         $entities = $em->getRepository('BatnaSiebelBundle:NamedSubsystem')->findAll();
-
+        echo 'tvb2';
         return $this->render('BatnaSiebelBundle:NamedSubsystem:index.html.twig', array(
             'entities' => $entities
         ));

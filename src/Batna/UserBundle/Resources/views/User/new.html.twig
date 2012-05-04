@@ -9,7 +9,9 @@
 			</div>
 			<div class="block-content">
 				<form action="{{ path('user_create') }}" method="post" {{ form_enctype(form) }}>
-				    {{ form_widget(form) }}
+					<div style="margin:10px;">
+				    	{{ form_widget(form) }}
+				    </div>
 					<div class="block-actions">
 						<ul class="actions-left">
 							<li><a href="{{ path('user') }}" class="button">{{ 'user.backToTheList'|trans({}, 'BatnaUserBundle') }}</a></li>

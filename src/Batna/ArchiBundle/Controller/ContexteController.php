@@ -34,22 +34,35 @@ class ContexteController extends Controller
      * Finds and displays a Contexte entity.
      *
      */
-    public function showAction($id)
+	public function showAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
+        
         $entity = $em->getRepository('BatnaArchiBundle:Contexte')->find($id);
+        $variables = $em->getRepository('BatnaArchiBundle:Variable')->findByType('contexte');
+        $valeurs = $em->getRepository('BatnaArchiBundle:ValVarContexte')->findByContexte($id);
+        
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Contexte entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
+		foreach($variables as $variable)
+		{
+			$varTab[$variable->getId()]['id'] = $variable->getId();
+			$varTab[$variable->getId()]['name'] = $variable->getName();
+			$varTab[$variable->getId()]['value'] = '';
+		}
+		
+		foreach($valeurs as $valeur)
+        {
+        	$varTab[$valeur->getVariable()->getId()]['value'] = $valeur->getValue();
+        }
+              
         return $this->render('BatnaArchiBundle:Contexte:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
+            'delete_form' => $this->createDeleteForm($id)->createView(),
+        	'variables'   => $varTab,
         ));
     }
 

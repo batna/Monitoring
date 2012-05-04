@@ -4,7 +4,7 @@
 
 {% block corps %}
 {% block flash %}{% endblock %}
-<div class="container_12">
+<!-- <div class="container_12">
 	<div class="grid_12">
 		<div class="block-border">
 			<div class="block-content">
@@ -13,9 +13,9 @@
 		</div>
 	</div>
 </div>
-<div class="clear"></div>
+<div class="clear"></div> -->
 <div class="container_12">
-	<div class="grid_6">
+	<div class="grid_12">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'env.envList'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
@@ -57,7 +57,7 @@
 		</div>
 	</div>
 	{% block variables %}
-	<div class="grid_6">
+	<div class="grid_12">
 		<div class="block-border">
 			<div class="block-header">
 				<h1>{{ 'var.envVarList'|trans([], 'BatnaArchiBundle') }}</h1><span></span>
@@ -77,8 +77,7 @@
 				    {% for variable in variables %}
 				        <tr>
 				            <td>
-				            	<a href="{{ path('varEnv_show', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
-				                <a href="{{ path('varEnv_edit', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+				            	<a href="{{ path('varEnv_edit', { 'id': variable.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
 				          	</td>
 				            <td>{{ variable.name }}</td>
 				        </tr>

@@ -20,10 +20,10 @@
 			    <tbody>
 				{% for group in groups %}
 			        <tr>
-				            <td>
-				            	<a href="{{ path('group_show', { 'id': group.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
-				                <a href="{{ path('group_edit', { 'id': group.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
-				            </td>
+			            <td>
+			            	<a href="{{ path('group_show', { 'id': group.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/magnifier.png') }}" /></a>
+			                <a href="{{ path('group_edit', { 'id': group.id }) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/pencil.png') }}" /></a>
+			            </td>
 				        <td>
 				        	<a href="{{ path('group_show', {'id': group.getId()} ) }}">{{ group.getName() }}</a>
 			        	</td>

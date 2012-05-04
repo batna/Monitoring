@@ -10,8 +10,8 @@ php app/console doctrine:database:drop --force
 php app/console doctrine:database:create
 php app/console doctrine:schema:create
 #php app/console doctrine:fixtures:load
-php app/console fos:user:create etienne etienne.lemontreer@batna.fr etienne
-#php app/console fos:user:create mohammed mohammed.ghaciri@batna.fr mohammed
+
+mysql --user=root monitoring < fixtures.sql
 
 sudo rm -rf app/cache/dev
 rm -rf app/logs/dev.log

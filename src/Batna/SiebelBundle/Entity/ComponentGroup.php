@@ -77,7 +77,19 @@ class ComponentGroup
      * @ORM\ManyToOne(targetEntity="Batna\SiebelBundle\Entity\Server")
      */
     private $server;
+
+    /**
+     * @var array $components
+     *
+     * @ORM\Column(name="components", type="array")
+     */
+    private $components;
     
+    
+    public function __construct()
+    {
+    	$this->components = array();
+    }
     
     public function __toString()
     {
@@ -216,28 +228,6 @@ class ComponentGroup
     }
 
     /**
-     * Add component
-     *
-     * @param Component $component
-     */
-    public function addComponent(\Batna\SiebelBundle\Entity\Component $component)
-    {
-    	$component->setComponentGroup($this);
-    	
-        $this->components[] = $component;
-    }
-
-    /**
-     * Get components
-     *
-     * @return string 
-     */
-    public function getComponents()
-    {
-        return $this->components;
-    }
-
-    /**
      * Set enterprise
      *
      * @param Enterprise $enterprise
@@ -245,6 +235,7 @@ class ComponentGroup
     public function setEnterprise($enterprise)
     {
         $this->enterprise = $enterprise;
+        $this->enterprise->addComponentGroup($this);
     }
 
     /**
@@ -265,6 +256,7 @@ class ComponentGroup
     public function setServer($server)
     {
         $this->server = $server;
+        $this->server->addComponentGroup($this);
     }
 
     /**
@@ -275,5 +267,66 @@ class ComponentGroup
     public function getServer()
     {
         return $this->server;
+    }
+
+    /**
+     * Get components
+     *
+     * @return Component 
+     */
+    public function getComponents()
+    {
+        return $this->components;
+    }   
+    
+    /**
+     * Has component
+     *
+     * @param Component $component
+     * @return boolean
+     */
+    public function hasComponent(Component $component)
+    {
+    	return in_array(array($component->getId(), $component->getName()), $this->components, true);
+    }
+
+    /**
+     * Add component
+     * 
+     * @param Component $component
+     */
+    public function addComponent(Component $component)
+    {
+        if (!$this->hasComponent($component)) {
+            $this->components[] = array($component->getId(),$component->getName());
+        }
+        return $this;
+    }
+    
+    /**
+     *  Remove component
+     * 
+     * @param Component component
+     */
+    public function removeComponent(component $component)
+    {
+    	if (false !== $key = array_search(array($component->getId, $component->getName()), $this->components, true)) {
+    		unset($this->components[$key]);
+    		$this->components = array_values($this->components);
+    	}
+    	return $this;
+    }
+        
+    public function getComponentIdByName($name)
+    {
+    	$tab = $this->components;
+    	foreach($tab as $ss)
+    	{
+    		if(array_search($name, $ss))
+    		{
+    			return $ss[0];
+    		}
+    	}
+    	return false;
     }
 }

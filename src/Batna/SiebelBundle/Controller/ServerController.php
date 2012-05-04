@@ -17,15 +17,35 @@ class ServerController extends Controller
      * Lists all Server entities.
      *
      */
-    public function indexAction()
+    public function indexAction($es='all')
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        
-        
-        $entities = $em->getRepository('BatnaSiebelBundle:Server')->findAll();
+    	$em = $this->getDoctrine()->getEntityManager();
+    	
+    	$entities = $em->getRepository('BatnaSiebelBundle:Server')->findAll();
 
+    	echo 'jusqu\'ici tout va bien';
+    	if(is_numeric($es))
+    	{
+    		echo 'premier cas';
+    		$entities = $em->getRepository('BatnaSiebelBundle:Server')->findByEnterprise($es);
+    		$es = $em->getRepository('BatnaSiebelBundle:Enterprise')->find($es);
+    	
+    	}
+    	else
+    	{
+    		echo 'deuxieme cas';
+    		$entities = $em->getRepository('BatnaSiebelBundle:Server')->findAll();
+    		
+    		$es = false;
+    	}
+    	
+    	
+    	echo 'encore bon';
+    	$servers = $entities;
+    	    	    		
         return $this->render('BatnaSiebelBundle:Server:index.html.twig', array(
-            'entities' => $entities
+            'entities' => $entities,
+        	'es' => $es,
         ));
     }
 

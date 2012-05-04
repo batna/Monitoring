@@ -24,51 +24,58 @@ class Server
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string $description
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var string $fullName
      *
-     * @ORM\Column(name="fullName", type="string", length=255)
+     * @ORM\Column(name="fullName", type="string", length=255, nullable=true)
      */
     private $fullName;
 
     /**
      * @var string $enableState
      *
-     * @ORM\Column(name="enableState", type="string", length=255)
+     * @ORM\Column(name="enableState", type="string", length=255, nullable=true)
      */
     private $enableState;
 
     /**
      * @var string $objectId
      *
-     * @ORM\Column(name="objectId", type="string", length=255)
+     * @ORM\Column(name="objectId", type="string", length=255, nullable=true)
      */
     private $objectId;
 
     /**
      * @var string $version
      *
-     * @ORM\Column(name="version", type="string", length=255)
+     * @ORM\Column(name="version", type="string", length=255, nullable=true)
      */
     private $version;
 
     /**
      * @var string $eventLog
      *
-     * @ORM\Column(name="eventLog", type="string", length=255)
+     * @ORM\Column(name="eventLog", type="string", length=255, nullable=true)
      */
     private $eventLog;
+
+    /**
+     * @var string $etat
+     *
+     * @ORM\Column(name="etat", type="string", length=255, nullable=true)
+     */
+    private $etat;
 
     /**
      * @var Host $host
@@ -80,7 +87,7 @@ class Server
     /**
      * @var Enterprise $enterprise
      *
-     * @ORM\ManyToOne(targetEntity="Batna\SiebelBundle\Entity\Enterprise")
+     * @ORM\ManyToOne(cascade={"persist"}, targetEntity="Batna\SiebelBundle\Entity\Enterprise")
      */
     private $enterprise;
 
@@ -98,11 +105,19 @@ class Server
      */
     private $attributes;
 
+    /**
+     * @var array $componentGroups
+     *
+     * @ORM\Column(name="componentGroups", type="array", nullable=true)
+     */
+    private $componentGroups;
+
     
     public function __construct()
     {
     	$this->parameters = array();
     	$this->attributes = array();
+    	$this->componentGroups = array();
     }
 
 
@@ -257,6 +272,26 @@ class Server
     }
 
     /**
+     * Set etat
+     *
+     * @param string $etat
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
      * Set host
      *
      * @param integer $host
@@ -284,6 +319,7 @@ class Server
     public function setEnterprise($enterprise)
     {
         $this->enterprise = $enterprise;
+        $this->enterprise->addServer($this);
     }
 
     /**
@@ -294,16 +330,6 @@ class Server
     public function getEnterprise()
     {
         return $this->enterprise;
-    }
-
-    /**
-     * Set parameters
-     *
-     * @param array $parameters
-     */
-    public function setParameters($parameters)
-    {
-        $this->parameters = $parameters;
     }
 
     /**
@@ -335,7 +361,7 @@ class Server
     public function addParameter($parameter)
     {
         if (!$this->hasParameter($parameter)) {
-            $this->parameters[] = strtoupper($parameter);
+            $this->parameters[] = $parameter;
         }
         return $this;
     }
@@ -393,7 +419,7 @@ class Server
     public function addAttribute($attribute)
     {
         if (!$this->hasAttribute($attribute)) {
-            $this->attributes[] = strtoupper($attribute);
+            $this->attributes[] = $attribute;
         }
         return $this;
     }
@@ -410,5 +436,66 @@ class Server
     		$this->attributes = array_values($this->attributes);
     	}
     	return $this;
+    }
+
+    /**
+     * Get componentGroups
+     *
+     * @return ComponentGroup 
+     */
+    public function getComponentGroups()
+    {
+        return $this->componentGroups;
+    }   
+    
+    /**
+     * Has componentGroup
+     *
+     * @param ComponentGroup $componentGroup
+     * @return boolean
+     */
+    public function hasComponentGroup(ComponentGroup $componentGroup)
+    {
+    	return in_array(array($componentGroup->getId(), $componentGroup->getName()), $this->componentGroups, true);
+    }
+
+    /**
+     * Add componentGroup
+     * 
+     * @param ComponentGroup $componentGroup
+     */
+    public function addComponentGroup(ComponentGroup $componentGroup)
+    {
+        if (!$this->hascomponentGroup($componentGroup)) {
+            $this->componentGroups[] = array($componentGroup->getId(),$componentGroup->getName());
+        }
+        return $this;
+    }
+    
+    /**
+     *  Remove componentGroup
+     * 
+     * @param ComponentGroup componentGroup
+     */
+    public function removeComponentGroup(ComponentGroup $componentGroup)
+    {
+    	if (false !== $key = array_search(array($componentGroup->getId(), $componentGroup->getName()), $this->componentGroups, true)) {
+    		unset($this->componentGroups[$key]);
+    		$this->componentGroups = array_values($this->componentGroups);
+    	}
+    	return $this;
+    }
+        
+    public function getComponentGroupIdByName($name)
+    {
+    	$tab = $this->componentGroups;
+    	foreach($tab as $cg)
+    	{
+    		if(array_search($name, $cg))
+    		{
+    			return $cg[0];
+    		}
+    	}
+    	return false;
     }
 }

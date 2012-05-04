@@ -11,17 +11,25 @@
 			</div>
 			<form action="{{ path('group_update', {'id': entity.id} ) }}" {{ form_enctype(edit_form) }} method="POST" class="group_edit">
 				<div class="block-content">
-			    	{{ form_widget(edit_form) }}
+					<div style="margin:10px;">
+			    		{{ form_widget(edit_form) }}
+			    	</div>
 					<div class="block-actions">
 						<ul class="actions-left">
 							<li><a class="button" href="{{ path('group') }}">{{'group.backToTheList'|trans([], 'BatnaUserBundle')  }}</a></li>
 						</ul>
 						<ul class="actions-right">
 							<li><input type="submit" class="button" value="{{ 'group.submitEdit'|trans([], 'BatnaUserBundle') }}" /></li>
+						</form>
+						<li>
+							<form action="{{ path('group_delete', { 'id': entity.id }) }}" method="post">
+				            	{{ form_widget(delete_form) }}
+				            	<input type="submit" value="{{ 'group.delete'|trans({}, 'BatnaUserBundle') }}" class="button red">
+				            </form>
+			            </li>
 						</ul>
 					</div>
 				</div>
-			</form>
 		</div>
 	</div>
 </div>

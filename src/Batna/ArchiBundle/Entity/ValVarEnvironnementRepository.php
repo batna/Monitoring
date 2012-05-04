@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ValVarEnvironnementRepository extends EntityRepository
 {
+	public function findByEnvAndVar($env, $var)
+	{
+	    // On passe par le QueryBuilder vide de l'EntityManager pour l'exemple
+	    $qb = $this->_em->createQueryBuilder();
+	
+	    $qb->select('v')
+	       ->from('BatnaArchiBundle:ValVarEnvironnement', 'v')
+	       ->where('v.environnement = :env')
+		     ->setParameter('env', $env)
+	       ->andWhere('v.variable = :var')
+	       	 ->setParameter('var', $var);
+	
+	    return $qb->getQuery()
+	               ->getResult();
+	}
 }

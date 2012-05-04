@@ -1,3 +1,19 @@
+BatnaToolsBundle:
+    resource: "@BatnaToolsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BatnaAlerteBundle:
+    resource: "@BatnaAlerteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BatnaSiebelBundle:
+    resource: "@BatnaSiebelBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BatnaArchiBundle:
+    resource: "@BatnaArchiBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

@@ -14,18 +14,19 @@
   <meta name="author" content="Etienne Le Montreer - Batna Consulting">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}"> <!-- Generic style (Boilerplate) -->
-  <link rel="stylesheet" href="{{ asset('css/960.fluid.css') }}"> <!-- 960.gs Grid System -->
-  <link rel="stylesheet" href="{{ asset('css/main.css') }}"> <!-- Complete Layout and main styles -->
-  <link rel="stylesheet" href="{{ asset('css/buttons.css') }}"> <!-- Buttons, optional -->
-  <link rel="stylesheet" href="{{ asset('css/lists.css') }}"> <!-- Lists, optional -->
-  <link rel="stylesheet" href="{{ asset('css/icons.css') }}"> <!-- Icons, optional -->
-  <link rel="stylesheet" href="{{ asset('css/notifications.css') }}"> <!-- Notifications, optional -->
-  <link rel="stylesheet" href="{{ asset('css/typography.css') }}"> <!-- Typography -->
-  <link rel="stylesheet" href="{{ asset('css/forms.css') }}"> <!-- Forms, optional -->
-  <link rel="stylesheet" href="{{ asset('css/tables.css') }}"> <!-- Tables, optional -->
-  <link rel="stylesheet" href="{{ asset('css/charts.css') }}"> <!-- Charts, optional -->
-  <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.8.15.custom.css') }}"> <!-- jQuery UI, optional -->
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/960.fluid.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/lists.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/notifications.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/typography.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/charts.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery-ui-1.8.15.custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
   <!-- end CSS-->
   
   <link href="//fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
@@ -86,22 +87,37 @@
     	<!-- Begin of Navigation -->
     	<nav id="nav">
 	    	<ul class="menu collapsible shadow-bottom">
-	    		<li><a href="{{ path('BatnaUserBundle_homepage') }}"><img src="{{ asset('img/icons/packs/fugue/16x16/dashboard.png') }}">{{ 'app.administration'|trans({}, 'BatnaUserBundle') }}</a>
-	    			<ul class="sub">
-	    				<li><a href="{{ path('BatnaUserBundle_homepage') }}">{{ 'dashboard.dashboard'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TBC</strong></em></a></li>
-	    				<li><a href="#">{{ 'app.messages'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
-	    				<li><a href="#">{{ 'app.alerts'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
-	    				<li><a href="{{ path('user') }}">{{ 'dashboard.userManagement'|trans({}, 'BatnaUserBundle') }}</a></li>
-	    				<li><a href="{{ path('group') }}">{{ 'dashboard.groupManagement'|trans({}, 'BatnaUserBundle') }}</a></li>
-	    			</ul>
-	    		</li>
 	    		<li><a href="#"><img src="{{ asset('img/icons/packs/fugue/16x16/application-list.png') }}">{{ 'dashboard.referentiel'|trans({}, 'BatnaUserBundle') }}</a>
 	    			<ul class="sub">
-	    				<li><a href="#">{{ 'dashboard.gateway'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
-	    				<li><a href="#">{{ 'dashboard.enterpriseServer'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
-	    				<li><a href="#">{{ 'dashboard.siebelServer'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li style="height:30px;"><a href="{{ path('ctxt') }}">{{ 'dashboard.contextes'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('env') }}">{{ 'dashboard.environnements'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('host') }}">{{ 'dashboard.hosts'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('gtw') }}">{{ 'dashboard.gateways'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('es') }}">{{ 'dashboard.enterprises'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('ss') }}">{{ 'dashboard.servers'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('cmp') }}">{{ 'dashboard.components'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('cg') }}">{{ 'dashboard.componentGroups'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('ns') }}">{{ 'dashboard.namedSubsystems'|trans({}, 'BatnaUserBundle') }}</a></li>
 	    			</ul>
 	    		</li>
+	    		<li><a href="{{ path('BatnaUserBundle_homepage') }}"><img src="{{ asset('img/icons/packs/fugue/16x16/dashboard.png') }}">{{ 'app.administration'|trans({}, 'BatnaUserBundle') }}</a>
+	    			<ul class="sub">
+	    				<li style="height:30px;"><a href="{{ path('BatnaUserBundle_homepage') }}">{{ 'dashboard.dashboard'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TBC</strong></em></a></li>
+	    				<li style="height:30px;"><a href="{{ path('user') }}">{{ 'dashboard.userManagement'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('group') }}">{{ 'dashboard.groupManagement'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    			</ul>
+	    		</li>
+	    		<li><a href="#"><img src="{{ asset('img/icons/packs/fugue/16x16/bell.png') }}">{{ 'dashboard.alertes'|trans({}, 'BatnaUserBundle') }}</a>
+	    			<ul class="sub">
+	    				<li style="height:30px;"><a href="{{ path('cat') }}">{{ 'dashboard.categories'|trans({}, 'BatnaUserBundle') }}</a></li>
+	    				<li style="height:30px;"><a href="{{ path('seuil') }}">{{ 'dashboard.seuils'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li style="height:30px;"><a href="{{ path('alert') }}">{{ 'dashboard.alertes'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    				<li style="height:30px;"><a href="{{ path('diff') }}">{{ 'dashboard.diffusionList'|trans({}, 'BatnaUserBundle') }} <em style="color:red;"><strong>TODO</strong></em></a></li>
+	    			</ul>
+	    		</li>
+	    		<!-- <li>
+	    			<a href="{{ path('siebns', {'id': 1}) }}"><img src="{{ asset('img/icons/packs/fugue/16x16/application-list.png') }}">SIEBNS <em style="color:red;"><strong>TBC</strong></em></a>
+	    		</li> -->
 	    	</ul>
     	</nav> <!--! end of #nav -->
     	
@@ -114,8 +130,10 @@
     	
 		<div class="shadow-bottom shadow-titlebar"></div>
 		
+		<div id="main-content">
     	{% block corps %}{% endblock %}
-    	
+    	<p>&nbsp;</p>
+    	</div>
 		
   	</div> <!--! end of #main -->
 

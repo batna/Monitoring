@@ -2,9 +2,11 @@
 
 namespace Batna\SiebelBundle\Entity;
 
-use Batna\ArchiBundle\Entity\Environnement;
+use Doctrine\ORM\Mapping\Id;
 
+use Batna\ArchiBundle\Entity\Environnement;
 use Batna\ArchiBundle\Entity\Host;
+use Batna\ToolsBundle\Entity\Document;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -105,16 +107,28 @@ class Gateway
     /**
      * @var string $currentFile
      *
-     * @ORM\Column(name="currentFile", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Batna\ToolsBundle\Entity\Document")
      */
     private $currentFile;
+
+    /**
+     * @var array $enterprises
+     *
+     * @ORM\Column(name="enterprises", type="array")
+     */
+    private $enterprises;
     
     
+    public function __construct()
+    {
+    	$this->enterprises = array();
+    }
+
     public function __toString()
     {
     	return $this->name;
     }
-
+    
     /**
      * Get id
      *
@@ -363,5 +377,66 @@ class Gateway
     public function getCurrentFile()
     {
         return $this->currentFile;
+    }
+
+    /**
+     * Get enterprises
+     *
+     * @return Enterprise 
+     */
+    public function getEnterprises()
+    {
+        return $this->enterprises;
+    }   
+    
+    /**
+     * Has enterprise
+     *
+     * @param Enterprise $enterprise
+     * @return boolean
+     */
+    public function hasEnterprise(Enterprise $enterprise)
+    {
+    	return in_array(array($enterprise->getId(), $enterprise->getName()), $this->enterprises, true);
+    }
+
+    /**
+     * Add enterprise
+     * 
+     * @param Enterprise $enterprise
+     */
+    public function addEnterprise(Enterprise $enterprise)
+    {
+        if (!$this->hasenterprise($enterprise)) {
+            $this->enterprises[] = array($enterprise->getId(),$enterprise->getName());
+        }
+        return $this;
+    }
+    
+    /**
+     *  Remove enterprise
+     * 
+     * @param Enterprise enterprise
+     */
+    public function removeEnterprise(Enterprise $enterprise)
+    {
+    	if (false !== $key = array_search(array($enterprise->getId, $enterprise->getName()), $this->enterprises, true)) {
+    		unset($this->enterprises[$key]);
+    		$this->enterprises = array_values($this->enterprises);
+    	}
+    	return $this;
+    }
+        
+	public function getEnterpriseIdByName($name)
+    {
+    	$tab = $this->enterprises;
+    	foreach($tab as $es)
+    	{
+    		if(array_search($name, $es))
+    		{
+    			return $es[0];
+    		}
+    	}
+    	return false;
     }
 }

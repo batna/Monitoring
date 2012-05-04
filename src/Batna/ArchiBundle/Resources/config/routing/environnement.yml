@@ -28,3 +28,40 @@ env_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "BatnaArchiBundle:Environnement:delete" }
     requirements: { _method: post }
+
+varEnv_show:
+    pattern:  /var/{id}/show
+    defaults: { _controller: "BatnaArchiBundle:Variable:showEnv" }
+
+varEnv_new:
+    pattern:  /var/new
+    defaults: { _controller: "BatnaArchiBundle:Variable:newVar" }
+
+varEnv_create:
+    pattern:  /var/create
+    defaults: { _controller: "BatnaArchiBundle:Variable:createEnv" }
+    requirements: { _method: post }
+
+varEnv_edit:
+    pattern:  /var/{id}/edit
+    defaults: { _controller: "BatnaArchiBundle:Variable:editEnv" }
+
+varEnv_update:
+    pattern:  /var/{id}/update
+    defaults: { _controller: "BatnaArchiBundle:Variable:updateEnv" }
+    requirements: { _method: post }
+
+varEnv_delete:
+    pattern:  /var/{id}/delete
+    defaults: { _controller: "BatnaArchiBundle:Variable:deleteEnv" }
+    requirements: { _method: post }
+
+varValEnv_edit:
+    pattern:  /{env}/var/{var}/edit
+    defaults: { _controller: "BatnaArchiBundle:Variable:editValEnv" }
+
+varValEnv_update:
+    pattern:  /{env}/var/{var}/update
+    defaults: { _controller: "BatnaArchiBundle:Variable:updateValEnv" }
+    requirements: { _method: post }
+    

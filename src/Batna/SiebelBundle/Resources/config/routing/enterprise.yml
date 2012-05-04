@@ -28,3 +28,12 @@ es_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "BatnaSiebelBundle:Enterprise:delete" }
     requirements: { _method: post }
+
+es_remove_parameter:
+    pattern:  /{id}/param/delete
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:removeParameter" }
+    requirements: { _method: post }
+
+es_add_parameter:
+    pattern:  /{id}/param/add
+    defaults: { _controller: "BatnaSiebelBundle:Enterprise:addParameter" }

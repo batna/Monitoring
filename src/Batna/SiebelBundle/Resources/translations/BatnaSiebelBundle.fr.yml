@@ -106,9 +106,11 @@ ns:
   addParameterSubmit: Ajouter le paramètre
   nsView: Détail d'un sous système nommé
   listParams: List des paramètres
+  enterprise: Enterprise
 ss:
   ssManagement: Gestion des Siebel Servers
   ssList: Liste des Siebel Servers
+  ssListByEnterprise: Liste des Siebel Servers de l'enterprise 
   noss: Aucun Siebel Server n'est déclaré pour le moment
   newss: Nouveau Siebel Server
   delete: Supprimer
@@ -126,6 +128,7 @@ ss:
   Version: Version
   Eventlog: Log événementielles
   Enterprise: Enterprise
+  etat: Etat
 es:
   esManagement: Gestion des Enterprise Servers
   esList: Liste des Enterprise Servers
@@ -153,3 +156,5 @@ es:
   Componentgroupsequence: Nombre de groupes de composants
   Componentsequence: nombre de composants
   Namedsubsystemsequence: nombre de sous systèmes
+  listParams: Liste des paramètres associés
+  listComponents: Liste des composants déclarés

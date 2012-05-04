@@ -1,0 +1,45 @@
+{% extends 'BatnaArchiBundle:Environnement:show.html.twig' %}
+
+{% block valeursVar %}
+
+<div class="grid_12">
+	<div class="block-border">
+		<div class="block-header">
+			<h1>{{ 'var.editVar'|trans([], 'BatnaArchiBundle') }} : {{ env.shortName }}</h1><span></span>
+		</div>
+		<div class="block-content">
+		{% for key, flash in app.session.getFlashes() %}
+			<div class="alert {{key }}"><span class="hide">x</span>{{ flash }}</div>
+		{% endfor %}
+		<form action="{{ path('varValEnv_update', { 'env': env.id, 'var': var.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+			<table>
+				<tr>
+					<td>
+						<br />Variable<br />{{ var.name }}
+					</td>
+					<td rowspan="2">
+							<div style="margin:10px;">
+								{{ form_widget(edit_form) }}
+							</div>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<div class="block-actions">
+				<ul class="actions-left">
+					<li>
+						<a class="button" href="{{ path('env_show', { 'id': env.id }) }}">{{ 'env.backToTheList'|trans({}, 'BatnaArchiBundle') }}</a>
+        			</li>
+				</ul>
+				<ul class="actions-right">
+					<li>
+            				<input type="submit" class="button" value="{{ 'env.edit'|trans({}, 'BatnaArchiBundle') }}" />
+        			</li>
+        			</form>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

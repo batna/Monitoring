@@ -1,14 +1,14 @@
 context:
-  contextList: Liste des projets
-  contextManagement: Gestion des projets
-  newContext: Nouveau projet
-  contextConsult: Consultation d'un projet
-  contextEdit: Modification d'un projet
+  contextList: Liste des contextes
+  contextManagement: Gestion des contextes
+  newContext: Nouveau contexte
+  contextConsult: Consultation d'un contexte
+  contextEdit: Modification d'un contexte
   backToTheList: Retour à la liste
   create: Créer
   edit: Modifier
   delete: Supprimer
-  noContext: Aucun projet n'a été défini pour le moment
+  noContext: Aucun contexte n'a été défini pour le moment
   actions: Actions
   name: Nom
 env:
@@ -44,7 +44,10 @@ host:
   ram: Mémoire vive
   noHost: Aucune machine n'a été définie pour le moment
 var:
-  contextVarList: Liste des variables de projet
+  contextVarList: Liste des variables de contexte
   envVarList: Liste des variables d'environnement
   newVar: Nouvelle variable
+  editVar: Modification d'une variable
+  consultVar: Consultation d'une variable
+  consultVars: Consultation des variables pour
   name: Nom

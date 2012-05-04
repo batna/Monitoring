@@ -22,11 +22,11 @@ class ValVarContexte
     private $id;
 
     /**
-     * @var string $valeur
+     * @var string $value
      *
-     * @ORM\Column(name="valeur", type="string", length=255)
+     * @ORM\Column(name="value", type="string", length=255)
      */
-    private $valeur;
+    private $value;
 
     /**
      * @var Variable $variable
@@ -41,7 +41,12 @@ class ValVarContexte
      * @ORM\ManyToOne(targetEntity="Batna\ArchiBundle\Entity\Contexte")
      */
     private $contexte;
-
+    
+    
+    public function __toString()
+    {
+    	return $this->variable->getName().'('.$this->contexte->getName().') = '.$this->value;
+    }
 
     /**
      * Get id
@@ -54,23 +59,23 @@ class ValVarContexte
     }
 
     /**
-     * Set valeur
+     * Set value
      *
-     * @param string $valeur
+     * @param string $value
      */
-    public function setValeur($valeur)
+    public function setValue($value)
     {
-        $this->valeur = $valeur;
+        $this->value = $value;
     }
 
     /**
-     * Get valeur
+     * Get value
      *
      * @return string 
      */
-    public function getValeur()
+    public function getValue()
     {
-        return $this->valeur;
+        return $this->value;
     }
 
     /**

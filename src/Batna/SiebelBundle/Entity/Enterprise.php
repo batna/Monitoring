@@ -100,7 +100,7 @@ class Enterprise
     private $databaseConStr;
 
     /**
-     * @var string $serverSequence
+     * @var string $namedSubsystemSequence
      *
      * @ORM\Column(name="serverSequence", type="string", length=255, nullable=true)
      */
@@ -144,14 +144,39 @@ class Enterprise
     /**
      * @var Gateway $gateway
      *
-     * @ORM\ManyToOne(targetEntity="Batna\SiebelBundle\Entity\Gateway")
+     * @ORM\ManyToOne(cascade={"persist"}, targetEntity="Batna\SiebelBundle\Entity\Gateway")
      */
     private $gateway;
+
+    /**
+     * @var array $servers
+     *
+     * @ORM\Column(name="servers", type="array", nullable=true)
+     */
+    private $servers;
+
+    /**
+     * @var array $namedSubsystems
+     *
+     * @ORM\Column(name="namedSubsystems", type="array", nullable=true)
+     */
+    private $namedSubsystems;
+
+    /**
+     * @var array $componentGroups
+     *
+     * @ORM\Column(name="componentGroups", type="array", nullable=true)
+     */
+    private $componentGroups;
 
 
     public function __construct()
     {
     	$this->parameters = array();
+    	$this->components = array();
+    	$this->servers = array();
+    	$this->namedSubsystems = array();
+    	$this->componentGroups = array();
     }
 
     public function __toString()
@@ -470,27 +495,6 @@ class Enterprise
     }
 
     /**
-     * Add server
-     *
-     * @param Server $server
-     */
-    public function addServer(\Batna\SiebelBundle\Entity\Server $server)
-    {
-    	$server->setEnterprise($this);
-    	$this->getDoctrine()->getEntityManager()->persist($server);
-    }
-
-    /**
-     * Get server
-     *
-     * @return Server 
-     */
-    public function getServers()
-    {
-    	return $this->getDoctrine()->getEntityManager()->getRepository('BatnaSiebelBundle:Server')->findByEnterprise($this);
-    }
-
-    /**
      * Set parameters
      *
      * @param array $parameters
@@ -518,7 +522,7 @@ class Enterprise
      */
     public function hasParameter($parameter)
     {
-    	return in_array(strtoupper($parameter), $this->parameters, true);
+    	return in_array($parameter, $this->parameters, true);
     }
 
     /**
@@ -529,7 +533,7 @@ class Enterprise
     public function addParameter($parameter)
     {
         if (!$this->hasParameter($parameter)) {
-            $this->parameters[] = strtoupper($parameter);
+            $this->parameters[] = $parameter;
         }
         return $this;
     }
@@ -546,16 +550,6 @@ class Enterprise
     		$this->parameters = array_values($this->parameters);
     	}
     	return $this;
-    }
-
-    /**
-     * Set components
-     *
-     * @param array $components
-     */
-    public function setComponents($components)
-    {
-        $this->components = $components;
     }
 
     /**
@@ -576,7 +570,7 @@ class Enterprise
      */
     public function hasComponent($component)
     {
-    	return in_array(strtoupper($component), $this->components, true);
+    	return in_array($component, $this->components, true);
     }
 
     /**
@@ -587,7 +581,7 @@ class Enterprise
     public function addComponent($component)
     {
         if (!$this->hasComponent($component)) {
-            $this->components[] = strtoupper($component);
+            $this->components[] = $component;
         }
         return $this;
     }
@@ -609,20 +603,204 @@ class Enterprise
     /**
      * Set gateway
      *
-     * @param ComponentGroup $gateway
+     * @param Gateway $gateway
      */
-    public function setGateway($gateway)
+    public function setGateway(Gateway $gateway)
     {
         $this->gateway = $gateway;
+        $this->gateway->addEnterprise($this);
     }
 
     /**
      * Get gateway
      *
-     * @return ComponentGroup 
+     * @return Gateway 
      */
     public function getGateway()
     {
         return $this->gateway;
+    }
+
+    /**
+     * Get servers
+     *
+     * @return Server 
+     */
+    public function getServers()
+    {
+        return $this->servers;
+    }   
+    
+    /**
+     * Has server
+     *
+     * @param Server $server
+     * @return boolean
+     */
+    public function hasServer(Server $server)
+    {
+    	return in_array(array($server->getId(), $server->getName()), $this->servers, true);
+    }
+
+    /**
+     * Add server
+     * 
+     * @param Server $server
+     */
+    public function addServer(Server $server)
+    {
+        if (!$this->hasServer($server)) {
+            $this->servers[] = array($server->getId(),$server->getName());
+        }
+        return $this;
+    }
+    
+    /**
+     *  Remove server
+     * 
+     * @param Server server
+     */
+    public function removeServer(Server $server)
+    {
+    	if (false !== $key = array_search(array($server->getId, $server->getName()), $this->servers, true)) {
+    		unset($this->servers[$key]);
+    		$this->servers = array_values($this->servers);
+    	}
+    	return $this;
+    }
+        
+    public function getServerIdByName($name)
+    {
+    	$tab = $this->servers;
+    	foreach($tab as $ss)
+    	{
+    		if(array_search($name, $ss))
+    		{
+    			return $ss[0];
+    		}
+    	}
+    	return false;
+    }
+
+    /**
+     * Get namedSubsystems
+     *
+     * @return NamedSubsystem 
+     */
+    public function getNamedSubsystems()
+    {
+        return $this->namedSubsystems;
+    }   
+    
+    /**
+     * Has namedSubsystem
+     *
+     * @param NamedSubsystem $namedSubsystem
+     * @return boolean
+     */
+    public function hasNamedSubsystem(NamedSubsystem $namedSubsystem)
+    {
+    	return in_array(array($namedSubsystem->getId(), $namedSubsystem->getName()), $this->namedSubsystems, true);
+    }
+
+    /**
+     * Add namedSubsystem
+     * 
+     * @param NamedSubsystem $namedSubsystem
+     */
+    public function addNamedSubsystem(NamedSubsystem $namedSubsystem)
+    {
+        if (!$this->hasNamedSubsystem($namedSubsystem)) {
+            $this->namedSubsystems[] = array($namedSubsystem->getId(),$namedSubsystem->getName());
+        }
+        return $this;
+    }
+    
+    /**
+     *  Remove namedSubsystem
+     * 
+     * @param NamedSubsystem namedSubsystem
+     */
+    public function removeNamedSubsystem(NamedSubsystem $namedSubsystem)
+    {
+    	if (false !== $key = array_search(array($namedSubsystem->getId, $namedSubsystem->getName()), $this->namedSubsystems, true)) {
+    		unset($this->namedSubsystems[$key]);
+    		$this->namedSubsystems = array_values($this->namedSubsystems);
+    	}
+    	return $this;
+    }
+        
+    public function getNamedSubsystemIdByName($name)
+    {
+    	$tab = $this->namedSubsystems;
+    	foreach($tab as $ns)
+    	{
+    		if(array_search($name, $ns))
+    		{
+    			return $ns[0];
+    		}
+    	}
+    	return false;
+    }
+
+    /**
+     * Get componentGroups
+     *
+     * @return ComponentGroup 
+     */
+    public function getComponentGroups()
+    {
+        return $this->componentGroups;
+    }   
+    
+    /**
+     * Has componentGroup
+     *
+     * @param ComponentGroup $componentGroup
+     * @return boolean
+     */
+    public function hasComponentGroup(ComponentGroup $componentGroup)
+    {
+    	return in_array(array($componentGroup->getId(), $componentGroup->getName()), $this->componentGroups, true);
+    }
+
+    /**
+     * Add componentGroup
+     * 
+     * @param ComponentGroup $componentGroup
+     */
+    public function addComponentGroup(ComponentGroup $componentGroup)
+    {
+        if (!$this->hascomponentGroup($componentGroup)) {
+            $this->componentGroups[] = array($componentGroup->getId(),$componentGroup->getName());
+        }
+        return $this;
+    }
+    
+    /**
+     *  Remove componentGroup
+     * 
+     * @param ComponentGroup componentGroup
+     */
+    public function removeComponentGroup(ComponentGroup $componentGroup)
+    {
+    	if (false !== $key = array_search(array($componentGroup->getId, $componentGroup->getName()), $this->componentGroups, true)) {
+    		unset($this->componentGroups[$key]);
+    		$this->componentGroups = array_values($this->componentGroups);
+    	}
+    	return $this;
+    }
+        
+    public function getComponentGroupIdByName($name)
+    {
+    	$tab = $this->componentGroups;
+    	foreach($tab as $cg)
+    	{
+    		if(array_search($name, $cg))
+    		{
+    			return $cg[0];
+    		}
+    	}
+    	return false;
     }
 }

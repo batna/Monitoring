@@ -184,4 +184,63 @@ class EnterpriseController extends Controller
             ->getForm()
         ;
     }
+    
+    public function addParameterAction($id)
+    {
+		$em = $this->getDoctrine()->getEntityManager();
+	
+		$enterprise = $em->getRepository('BatnaSiebelBundle:Enterprise')->find($id);
+	
+		if (!$enterprise) {
+			throw $this->createNotFoundException('Unable to find Enterprise entity.');
+		}
+	
+		$editForm   = $this->createForm(new EnterpriseType(), $enterprise);
+		$deleteForm = $this->createDeleteForm($id);
+	
+		$request = $this->getRequest();
+		$parameter = $request->get('parameter');
+		$value = $request->get('value');
+	
+		$enterprise->addParameter(array($parameter, $value));
+	
+		$em->persist($enterprise);
+		$em->flush();
+	
+		return $this->render('BatnaSiebelBundle:Enterprise:show.html.twig', array(
+            'entity'      => $enterprise,
+            'delete_form' => $deleteForm->createView(),
+
+        ));
+    }
+    
+    public function removeParameterAction($id)
+    {
+		$em = $this->getDoctrine()->getEntityManager();
+	
+		$enterprise = $em->getRepository('BatnaSiebelBundle:Enterprise')->find($id);
+	
+		if (!$enterprise) {
+			throw $this->createNotFoundException('Unable to find Enterprise entity.');
+		}
+	
+		$editForm   = $this->createForm(new EnterpriseType(), $enterprise);
+		$deleteForm = $this->createDeleteForm($id);
+	
+		$request = $this->getRequest();
+		$parameter = $request->get('param');
+		$value = $request->get('value');
+		$paramtab = array($parameter, $value);
+	
+		$enterprise->removeParameter($paramtab);
+	
+		$em->persist($enterprise);
+		$em->flush();
+	
+		return $this->render('BatnaSiebelBundle:Enterprise:show.html.twig', array(
+            'entity'      => $enterprise,
+            'delete_form' => $deleteForm->createView(),
+
+        ));
+    }
 }

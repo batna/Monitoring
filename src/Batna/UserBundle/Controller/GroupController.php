@@ -43,7 +43,7 @@ class GroupController extends Controller
             throw $this->createNotFoundException('Unable to find Group entity.');
         }
         if (!$roles) {
-            throw $this->createNotFoundException('Unable to find Roles entity.');
+            throw $this->createNotFoundException('Unable to find Role entities.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
